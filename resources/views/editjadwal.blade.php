@@ -89,6 +89,14 @@
                 <li>
                     <a href="/quran/partnerapi">PARTNER API</a>
                 </li>
+                @auth
+                <li>
+                    <form method="POST" action="{{ route('logout') }}" class="m-2">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-block">Logout</button>
+                    </form>
+                </li>
+                @endauth
             </ul>
         </nav>
         <!-- Page Content Holder -->
@@ -139,10 +147,6 @@
                           @endforeach
                         </datalist></div>
                     <button type="submit" class="btn btn-success">Submit</button>
-                </form>
-                <form method="POST" action="{{ route('logout') }}" class="mt-3">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
                 <div class="line"></div>
                 <h3 class="my-3">Daftar Masjid Yang Menggunakan Jadwal Sholat My QUR`AN</h3>

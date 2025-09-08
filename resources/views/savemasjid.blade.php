@@ -89,6 +89,14 @@
                 <li>
                     <a href="/quran/partnerapi">PARTNER API</a>
                 </li>
+                @auth
+                <li>
+                    <form method="POST" action="{{ route('logout') }}" class="m-2">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-block">Logout</button>
+                    </form>
+                </li>
+                @endauth
             </ul>
         </nav>
         <!-- Page Content Holder -->
