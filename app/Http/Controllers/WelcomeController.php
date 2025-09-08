@@ -67,9 +67,10 @@ class WelcomeController extends Controller
 
         // Find or create the user
         $user = User::updateOrCreate(
-            ['id' => $auth_data['id']],
+            ['chat_id' => $auth_data['id']],
             [
                 'name' => trim(($auth_data['first_name'] ?? '') . ' ' . ($auth_data['last_name'] ?? '')),
+                'username' => $auth_data['username'] ?? null,
                 'email' => $auth_data['id'] . '@telegram.user', // Placeholder email
                 'password' => Hash::make(Str::random(20)) // Dummy password
             ]
