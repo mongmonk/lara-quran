@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+	margin: 0;
+}
+
+p {
+	margin: 2px;
+}
+
+.in10 {
+	width: 10%;
+	padding: 1vh;
+	margin-top: 1vh;
+	margin-bottom: 2vh;
+}
+
+.in20 {
+	width: 20%;
+	padding: 1vh;
+	margin-top: 1vh;
+	margin-bottom: 2vh;
+}
+
+.in30 {
+	width: 30%;
+	padding: 1vh;
+	margin-top: 1vh;
+	margin-bottom: 3vh;
+}
+
+.in60 {
+	width: 30%;
+	padding: 1vh;
+	margin-top: 1vh;
+	margin-bottom: 3vh;
+}
+
+.in90 {
+	width: 90%;
+	padding: 1vh;
+	margin-top: 1vh;
+	margin-bottom: 3vh;
+}
+
+.in100 {
+	width: 100%;
+	padding: 1vh;
+	margin-top: 1vh;
+	margin-bottom: 3vh;
+}
+
+.setting {
+	display: none;
+	margin: 2vw;
+}
+
+.w40 {
+	width: 40%;
+	margin-top: 1vw;
+	margin-left: 1vw;
+	margin-bottom: -1vh;
+}
+
+.w60 {
+	width: 60%;
+	margin-top: 1vw;
+	margin-left: 1vw;
+	margin-bottom: -1vh;
+}
+
+.w90 {
+	width: 90%;
+	margin-top: 1vw;
+	margin-left: 1vw;
+	margin-bottom: -1vh;
+}
+
+.m2 {
+	margin: 2vw;
+}
+
+.mlr2 {
+	margin-left: 2vw;
+	margin-right: 2vw;
+}
+
+.hide {
+	display: none;
+}
+
+.center {
+	margin: 1vh auto 1vh auto;
+	text-align: center;
+}
+
+.preview {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-image: url("https://masjid.myquran.com/img/makkah.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+
+.container {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+.header {
+	display: flex;
+	height: 17%;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.kolom {
+	margin: 1vh 0.6vw 1vh 0.6vw;
+}
+
+p.tanggal {
+	color: antiquewhite;
+	font-size: 1.6vw !important;
+}
+
+hr.m2 {
+	margin-left: 2vw;
+	margin-right: 2vw;
+}
+
+p.nama {
+	color: lime;
+	font-size: 3.5vw;
+	font-weight: bold;
+	text-shadow: 2px 1px 3px #adada3;
+}
+
+p.alamat {
+	font-size: 1.3vw;
+	color: gold;
+}
+
+p.jam {
+	font-size: 5vw;
+	color: antiquewhite;
+	font-weight: bold;
+}
+
+.content {
+	display: flex;
+	height: 50%;
+	align-items: flex-end;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.data {
+	margin: 0.5vh 1vw 0.5vh 1vw;
+	width: 10%;
+	text-align: center;
+	border-radius: 2px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.active {
+	background-color: rgba(0, 180, 0, 0.6);
+}
+
+p.info {
+	font-size: 2vw;
+	color: yellow;
+	margin: 0.2vh;
+}
+
+hr.m0 {
+	display: none;
+	margin: 0;
+}
+
+p.info-jam {
+	font-size: 2.5vw;
+	color: white;
+	font-weight: bold;
+	margin: 0.2vh;
+}
+
+.reminder {
+	height: 4%;
+	width: 30%;
+	margin: 0.4vh auto 0.4vh auto;
+	border-radius: 2px;
+	text-align: center;
+}
+
+p.text-reminder {
+	font-size: 1.8vw;
+	color: yellow;
+}
+
+.footer {
+	margin-top: 9.5%;
+	height: 9.5%;
+	text-align: center;
+	font-style: italic;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.marquee {
+	height: 10vh;
+	overflow: hidden;
+	position: relative;
+}
+
+.marquee p {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-size: 1.4vw;
+	text-align: center;
+	color: white;
+	margin: 6px;
+	line-height: 3vh;
+
+	transform:translateX(100%);
+	-moz-transform:translateX(100%);
+	-webkit-transform:translateX(100%);
+}
+.marquee p:nth-child(1) {
+	animation: left-one 20s ease infinite;
+	-moz-animation: left-one 20s ease infinite;
+	-webkit-animation: left-one 20s ease infinite;
+}
+.marquee p:nth-child(2) {
+	animation: left-two 20s ease infinite;
+	-moz-animation: left-two 20s ease infinite;
+	-webkit-animation: left-two 20s ease infinite;
+}
+.marquee.down p {
+	transform:translateY(-100%);
+	-moz-transform:translateY(-100%);
+	-webkit-transform:translateY(-100%);
+}
+.marquee.down p:nth-child(1) {
+	animation: down-one 20s ease infinite;
+	-moz-animation: down-one 20s ease infinite;
+	-webkit-animation: down-one 20s ease infinite;
+}
+.marquee.down p:nth-child(2) {
+	animation: down-two 20s ease infinite;
+	-moz-animation: down-two 20s ease infinite;
+	-webkit-animation: down-two 20s ease infinite;
+}
+.marquee.up p {	
+	transform:translateY(100%);
+	-moz-transform:translateY(100%);
+	-webkit-transform:translateY(100%);
+}
+.marquee.up p:nth-child(1) {
+	animation: up-one 20s ease infinite;
+	-moz-animation: up-one 20s ease infinite;
+	-webkit-animation: up-one 20s ease infinite;
+}
+.marquee.up p:nth-child(2) {
+	animation: up-two 20s ease infinite;
+	-moz-animation: up-two 20s ease infinite;
+	-webkit-animation: up-two 20s ease infinite;
+}
+
+/*================================
+	Move the Marquee to the Left
+==================================*/
+
+/** Mozilla Firefox Keyframes **/
+@-moz-keyframes left-one {
+	0%	{
+		-moz-transform:translateX(100%);
+	}
+	10% {
+		-moz-transform:translateX(0);
+	}
+	40% {
+		-moz-transform:translateX(0);
+	}
+	50% {
+		-moz-transform:translateX(-100%);
+	}
+	100%{
+		-moz-transform:translateX(-100%);
+	}
+}
+@-moz-keyframes left-two {
+	0% {
+		-moz-transform:translateX(100%);
+	}
+	50% {
+		-moz-transform:translateX(100%);
+	}
+	60% {
+		-moz-transform:translateX(0);		
+	}
+	90% {
+		-moz-transform:translateX(0);		
+	}
+	100%{
+		-moz-transform:translateX(-100%);
+	}
+}
+/** Webkit Keyframes **/
+@-webkit-keyframes left-one {
+	0% {
+		-webkit-transform:translateX(100%);
+	}
+	10% {
+		-webkit-transform:translateX(0);
+	}
+	40% {
+		-webkit-transform:translateX(0);
+	}
+	50% {
+		-webkit-transform:translateX(-100%);
+	}
+	100%{
+		-webkit-transform:translateX(-100%);
+	}
+}
+@-webkit-keyframes left-two {
+	0% {
+		-webkit-transform:translateX(100%);
+	}
+	50% {
+		-webkit-transform:translateX(100%);
+	}
+	60% {
+		-webkit-transform:translateX(0);		
+	}
+	90% {
+		-webkit-transform:translateX(0);		
+	}
+	100%{
+		-webkit-transform:translateX(-100%);
+	}
+}
+
+/*================================
+	Move the Marquee Downwards
+==================================*/
+
+/** Mozilla Firefox Keyframes **/
+@-moz-keyframes down-one {
+	0%	{
+		-moz-transform:translateY(-100%);
+	}
+	10% {
+		-moz-transform:translateY(0);
+	}
+	40% {
+		-moz-transform:translateY(0);
+	}
+	50% {
+		-moz-transform:translateY(100%);
+	}
+	100%{
+		-moz-transform:translateY(100%);
+	}
+}
+@-moz-keyframes down-two {
+	0% {
+		-moz-transform:translateY(-100%);
+	}
+	50% {
+		-moz-transform:translateY(-100%);
+	}
+	60% {
+		-moz-transform:translateY(0);		
+	}
+	90% {
+		-moz-transform:translateY(0);		
+	}
+	100%{
+		-moz-transform:translateY(100%);
+	}
+}
+
+/** Webkit Keyframes **/
+@-webkit-keyframes down-one {
+	0% {
+		-webkit-transform:translateY(-100%);
+	}
+	10% {
+		-webkit-transform:translateY(0);
+	}
+	40% {
+		-webkit-transform:translateY(0);
+	}
+	50% {
+		-webkit-transform:translateY(100%);
+	}
+	100%{
+		-webkit-transform:translateY(100%);
+	}
+}
+@-webkit-keyframes down-two {
+	0% {
+		-webkit-transform:translateY(-100%);
+	}
+	50% {
+		-webkit-transform:translateY(-100%);
+	}
+	60% {
+		-webkit-transform:translateY(0);		
+	}
+	90% {
+		-webkit-transform:translateY(0);		
+	}
+	100%{
+		-webkit-transform:translateY(100%);
+	}
+}
+
+/*================================
+	Move the Marquee Upwards
+==================================*/
+
+/** Mozilla Firefox Keyframes **/
+@-moz-keyframes up-one {
+	0%	{
+		-moz-transform:translateY(100%);
+	}
+	10% {
+		-moz-transform:translateY(0);
+	}
+	40% {
+		-moz-transform:translateY(0);
+	}
+	50% {
+		-moz-transform:translateY(-100%);
+	}
+	100%{
+		-moz-transform:translateY(-100%);
+	}
+}
+@-moz-keyframes up-two {
+	0% {
+		-moz-transform:translateY(100%);
+	}
+	50% {
+		-moz-transform:translateY(100%);
+	}
+	60% {
+		-moz-transform:translateY(0);		
+	}
+	90% {
+		-moz-transform:translateY(0);		
+	}
+	100%{
+		-moz-transform:translateY(-100%);
+	}
+}
+
+/** Webkit Keyframes **/
+@-webkit-keyframes up-one {
+	0% {
+		-webkit-transform:translateY(100%);
+	}
+	10% {
+		-webkit-transform:translateY(0);
+	}
+	40% {
+		-webkit-transform:translateY(0);
+	}
+	50% {
+		-webkit-transform:translateY(-100%);
+	}
+	100%{
+		-webkit-transform:translateY(-100%);
+	}
+}
+@-webkit-keyframes up-two {
+	0% {
+		-webkit-transform:translateY(100%);
+	}
+	50% {
+		-webkit-transform:translateY(100%);
+	}
+	60% {
+		-webkit-transform:translateY(0);		
+	}
+	90% {
+		-webkit-transform:translateY(0);		
+	}
+	100%{
+		-webkit-transform:translateY(-100%);
+	}
+}

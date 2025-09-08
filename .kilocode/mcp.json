@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "6000"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/laragon/www/myquran-lara/documentation"
+      ]
+    },
+    "laravel-boost": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "php",
+        "-d",
+        "display_errors=stderr",
+        "artisan",
+        "boost:mcp"
+      ],
+      "disabled": false,
+      "alwaysAllow": [
+        "application-info",
+        "browser-logs",
+        "database-connections",
+        "database-query",
+        "database-schema",
+        "get-absolute-url",
+        "get-config",
+        "last-error",
+        "list-artisan-commands",
+        "tinker",
+        "search-docs",
+        "report-feedback",
+        "read-log-entries",
+        "list-routes",
+        "list-available-env-vars",
+        "list-available-config-keys"
+      ]
+    }
+  }
+}
