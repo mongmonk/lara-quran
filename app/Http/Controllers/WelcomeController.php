@@ -84,18 +84,14 @@ class WelcomeController extends Controller
         return redirect()->intended(route('quran.jadwalsholatharian'));
     }
     
-    public function logout()
+    public function logout(Request $request)
     {
-        // Clear all user session data
-        Session::forget([
-            'user_logged',
-            'user_id',
-            'user_first_name',
-            'user_last_name',
-            'user_username',
-            'user_photo_url',
-            'login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'
-        ]);
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/');
     }
     

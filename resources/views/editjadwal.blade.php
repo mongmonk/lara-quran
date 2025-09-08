@@ -140,6 +140,10 @@
                         </datalist></div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
+                <form method="POST" action="{{ route('logout') }}" class="mt-3">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
                 <div class="line"></div>
                 <h3 class="my-3">Daftar Masjid Yang Menggunakan Jadwal Sholat My QUR`AN</h3>
                 <ul class="list-group">

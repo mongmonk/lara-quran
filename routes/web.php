@@ -12,6 +12,7 @@ Route::get('/', [QuranController::class, 'index']);
 // Welcome controller routes
 Route::get('/login', [WelcomeController::class, 'index'])->name('login');
 Route::get('/welcome/authorization', [WelcomeController::class, 'authorization']);
+Route::post('/logout', [WelcomeController::class, 'logout'])->name('logout');
 Route::get('/storage/{file}', [WelcomeController::class, 'image'])->where('file', '.*');
 
 // Quran controller routes
