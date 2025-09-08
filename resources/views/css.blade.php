@@ -21,7 +21,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @font-face {
     font-family: fontArab;
-    src: url('{{ asset('inc/LPMQ.ttf') }}');
+    src: url('{{ asset('inc/fonts/LPMQ.ttf') }}');
     font-display: swap;
 }
 body {
@@ -216,13 +216,13 @@ ul.home li.list-group-item{
 .halaman{
     border: 100px solid transparent;
     padding: 15px;
-    border-image: url({{ asset('inc/brdr.jpg') }}) 22% round;
+    border-image: url({{ asset('inc/images/brdr.jpg') }}) 22% round;
 }
 @media only screen and (max-width: 600px) {
     .halaman{
         border: 30px solid transparent;
         padding: 5px;
-        border-image: url({{ asset('inc/brdr.jpg') }}) 22% round;
+        border-image: url({{ asset('inc/images/brdr.jpg') }}) 22% round;
     }
     .arab {
         font-size: 1.3em;

@@ -12,7 +12,7 @@
     <meta property="og:description" content="{{ $title }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:site_name" content="My QUR`AN" />
-    <meta property="og:image" content="{{ asset('inc/jadwal.jpg') }}" />
+    <meta property="og:image" content="{{ asset('inc/images/background.png') }}" />
     <meta property="og:image:type" content="image/png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <style type="text/css">
@@ -464,11 +464,11 @@
       <div class="edit">
         @if ($chat_id == $owner_chat_id)
           <a href="{{ url("quran/editjadwal/{$url}") }}">
-            <img src="https://i0.wp.com/ps.w.org/under-construction-page/assets/icon-256x256.gif?resize=30,30" width="30" height="30">
+            <img src="{{ asset('inc/images/edit.gif') }}" width="30" height="30">
           </a>
         @else
           <a href="{{ url("quran/jadwalsholatharian") }}">
-            <img src="https://i0.wp.com/ps.w.org/under-construction-page/assets/icon-256x256.gif?resize=30,30" width="30" height="30">
+            <img src="{{ asset('inc/images/edit.gif') }}" width="30" height="30">
           </a>
         @endif
       </div>

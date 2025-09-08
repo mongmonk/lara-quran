@@ -13,7 +13,7 @@
     <meta property="og:description" content="Al-quran {{ $title }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:site_name" content="My QUR`AN" />
-    <meta property="og:image" content="{{ asset('inc/alquran.png') }}" />
+    <meta property="og:image" content="{{ asset('inc/images/alquran.png') }}" />
     <meta property="og:image:type" content="image/png" />
     @include('css')
 </head>
@@ -100,7 +100,7 @@
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="navbar-btn">☰</button>
                     <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="My QUR`AN">
-                        <img src="{{ asset('inc/logo.png') }}" width='200' height='45' alt="My QUR`AN"/>
+                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="My QUR`AN"/>
                     </a>
                 </div>
             </nav>
@@ -157,9 +157,9 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="/inc/bootstrap-multiselect.js"></script>
-    <script src="/inc/jquery.mediaplayer.js"></script>
-    <script src="/inc/jquery.surah.js"></script>
+    <script src="{{ asset('inc/js/bootstrap-multiselect.js') }}"></script>
+    <script src="{{ asset('inc/js/jquery.mediaplayer.js') }}"></script>
+    <script src="{{ asset('inc/js/jquery.surah.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {

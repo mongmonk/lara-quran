@@ -28,7 +28,7 @@
   </div>
   <a class="my2 mx-auto" href="{{ url('/') }}" title="My QUR`AN">
     <amp-img
-      src="{{ asset('inc/logo.png') }}"
+      src="{{ asset('inc/images/logo.png') }}"
       width="200"
       height="45"
       layout="fixed"

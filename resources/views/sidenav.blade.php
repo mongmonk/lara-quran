@@ -79,7 +79,7 @@
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="navbar-btn">☰</button>
                     <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="My QUR`AN">
-                        <img src="{{ asset('inc/logo.png') }}" width='200' height='45' alt="My QUR`AN"/>
+                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="My QUR`AN"/>
                     </a>
                 </div>
             </nav>

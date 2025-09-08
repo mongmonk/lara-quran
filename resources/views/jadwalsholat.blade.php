@@ -14,7 +14,7 @@
     <meta property="og:description" content="Jadikanlah Al-quranul Karim dan Sunnah Nabi sebagai tuntunan hidupmu agar kamu tidak sesat" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:site_name" content="My QUR`AN" />
-    <meta property="og:image" content="{{ asset('inc/alquran.png') }}" />
+    <meta property="og:image" content="{{ asset('inc/images/alquran.png') }}" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="500" />
     <meta property="og:image:type" content="image/png" />

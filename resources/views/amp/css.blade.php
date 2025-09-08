@@ -9,7 +9,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
   @font-face {
     font-family: fontArab;
-    src: url('{{ asset('inc/LPMQ.ttf') }}');
+    src: url('{{ asset('inc/fonts/LPMQ.ttf') }}');
   }
   html {
     font-family: 'Quicksand', sans-serif;
