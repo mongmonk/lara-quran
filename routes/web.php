@@ -42,22 +42,12 @@ Route::get('/quran/privacy', [QuranController::class, 'privacy']);
 Route::get('/quran/partnerapi', [QuranController::class, 'partnerapi']);
 Route::get('/quran/contact', [QuranController::class, 'contact']);
 Route::post('/quran/contact', [QuranController::class, 'contact']);
-Route::get('/quran/search', [QuranController::class, 'search']);
 Route::get('/quran/doa', [QuranController::class, 'doa']);
 Route::get('/quran/masjid/{masjidid?}', [QuranController::class, 'masjid']);
 Route::get('/quran/meta', [QuranController::class, 'meta']);
 
 // Hadits controller routes
-Route::get('/hadits/bukhari/{page?}', [HaditsController::class, 'bukhari'])->where('page', '[0-9]+');
-Route::get('/hadits/muslim/{page?}', [HaditsController::class, 'muslim'])->where('page', '[0-9]+');
-Route::get('/hadits/abudaud/{page?}', [HaditsController::class, 'abudaud'])->where('page', '[0-9]+');
-Route::get('/hadits/ahmad/{page?}', [HaditsController::class, 'ahmad'])->where('page', '[0-9]+');
-Route::get('/hadits/darimi/{page?}', [HaditsController::class, 'darimi'])->where('page', '[0-9]+');
-Route::get('/hadits/ibnumajah/{page?}', [HaditsController::class, 'ibnumajah'])->where('page', '[0-9]+');
-Route::get('/hadits/malik/{page?}', [HaditsController::class, 'malik'])->where('page', '[0-9]+');
-Route::get('/hadits/nasai/{page?}', [HaditsController::class, 'nasai'])->where('page', '[0-9]+');
-Route::get('/hadits/tirmidzi/{page?}', [HaditsController::class, 'tirmidzi'])->where('page', '[0-9]+');
-Route::get('/hadits/search/{book}', [HaditsController::class, 'search']);
+Route::get('/hadits/{book}/{page?}', [HaditsController::class, 'search'])->where('page', '[0-9]+');
 
 // Bot controller routes
 Route::get('/bot', [BotController::class, 'index']);

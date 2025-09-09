@@ -19,69 +19,36 @@ class WelcomeController extends Controller
 
     public function authorization(Request $request)
     {
-        // Get all request parameters
-        $auth_data = $request->all();
+        // Get chat_id from the request
+        $chat_id = $request->input('id');
 
-        // Check if required parameters exist
-        if (! isset($auth_data['id']) || ! isset($auth_data['hash']) || ! isset($auth_data['auth_date'])) {
-            return redirect('/login')->with('error', 'Autentikasi tidak valid.');
+        // Check if chat_id exists
+        if (! $chat_id) {
+            return redirect('/login')->with('error', 'ID Pengguna tidak ditemukan.');
         }
 
-        // Check if auth_date is not too old (5 minutes)
-        if (time() - (int) $auth_data['auth_date'] > 300) {
-            return redirect('/login')->with('error', 'Autentikasi telah kedaluwarsa.');
-        }
+        // Find the user by chat_id
+        $user = User::where('chat_id', $chat_id)->first();
 
-        // Validate Telegram authorization
-        $bot_token = env('TELEGRAM_BOT_TOKEN');
-
-        // Check if bot token is set
-        if (empty($bot_token)) {
-            return redirect('/login')->with('error', 'Token bot Telegram belum diatur. Silakan hubungi administrator.');
-        }
-
-        // Create data check string
-        $data_check_arr = [];
-        foreach ($auth_data as $key => $value) {
-            if ($key !== 'hash') {
-                $data_check_arr[] = $key.'='.$value;
-            }
-        }
-        sort($data_check_arr);
-        $data_check_string = implode("\n", $data_check_arr);
-
-        // Generate secret key
-        $secret_key = hash('sha256', $bot_token, true);
-
-        // Generate hash
-        $hash = hash_hmac('sha256', $data_check_string, $secret_key);
-
-        // Validate hash
-        if ($hash !== $auth_data['hash']) {
-            Log::error('Telegram Authentication Failed: Hash mismatch.');
-
-            return redirect('/login')->with('error', 'Autentikasi tidak valid. Token bot mungkin tidak sesuai.');
-        }
-
-        Log::info('Telegram Authentication Success', $auth_data);
-
-        // Find or create the user
-        $user = User::updateOrCreate(
-            ['chat_id' => $auth_data['id']],
-            [
-                'name' => trim(($auth_data['first_name'] ?? '').' '.($auth_data['last_name'] ?? '')),
-                'username' => $auth_data['username'] ?? null,
-                'email' => $auth_data['id'].'@telegram.user', // Placeholder email
+        // If user doesn't exist, create one (optional, but good for robustness)
+        if (! $user) {
+            // This part is a fallback, as BotController should have created the user.
+            // We might not have first_name, etc., so we create a minimal user.
+            $user = User::create([
+                'chat_id' => $chat_id,
+                'name' => 'Telegram User '.$chat_id,
+                'username' => 'telegram_'.$chat_id,
+                'email' => $chat_id.'@telegram.user', // Placeholder email
                 'password' => Hash::make(Str::random(20)), // Dummy password
-            ]
-        );
+            ]);
+        }
 
         // Log the user in
         Auth::login($user, true); // true for "remember me"
 
-        Log::info('User logged in successfully', ['user_id' => $user->id]);
+        Log::info('User logged in successfully via Telegram link', ['user_id' => $user->id]);
 
-        // Redirect to jadwalsholatharian page after login
+        // Redirect to the intended page, or a default
         return redirect()->intended(route('quran.jadwalsholatharian'));
     }
 

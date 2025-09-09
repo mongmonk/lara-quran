@@ -391,14 +391,6 @@ class QuranController extends Controller
         return view('contact', $data);
     }
 
-    public function search()
-    {
-        $query = request()->get('query');
-        $data['data'] = $this->quran->searchQuran($query);
-        $data['title'] = "Mencari Ayat Tentang `{$query}` ~ My QUR`AN";
-
-        return view('amp.daftarsajdah', $data);
-    }
 
     public function doa()
     {

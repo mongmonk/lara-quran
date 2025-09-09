@@ -91,11 +91,3 @@
                     </a>
                 </div>
             </nav>
-            <form method="GET" action="/quran/search/" target="_top" class="d-print-none">
-                <div class="input-group my-2 px-5">
-                    <input type="search" class="form-control" placeholder="Cari ayat tentang..." value="{{ request()->get('query') }}" name="query">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Search</button>
-                    </div>
-                </div>
-            </form>

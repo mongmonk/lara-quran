@@ -36,6 +36,7 @@
     </script>  
     <script async custom-element="amp-audio" src="https://cdn.ampproject.org/v0/amp-audio-0.1.js"></script>
     <script async custom-element="amp-addthis" src="https://cdn.ampproject.org/v0/amp-addthis-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     @include('amp.css')
   </head>
   <body>
@@ -53,10 +54,6 @@
             <amp-addthis width="220" height="51"  data-pub-id="ra-58ee198592911521" data-widget-id="eebc" data-widget-type="inline"></amp-addthis>
           </div>
         </header>
-        <form class="sample-form my3" method="GET" action="/quran/search/" target="_top">
-          <input type="search" class="py1 px1" placeholder="Cari ayat tentang..." value="{{ request()->get('query') }}" name="query">
-          <button type="submit" class="py1">Search</button>
-        </form>
       </article>
       <ul class="list-reset">
         @foreach($data['tafsir'] as $i => $list)

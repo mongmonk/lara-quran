@@ -265,10 +265,14 @@ class QuranModel extends Model
      */
     public function searchQuran($search)
     {
+        if (empty($search)) {
+            return [];
+        }
+
         $data = [];
         $json = $this->getQuranStatis();
         foreach ($json as $key => $value) {
-            if (strpos($value['id'], $search) !== false) {
+            if (stripos($value['id'], $search) !== false) {
                 $data[] = $value;
             }
         }

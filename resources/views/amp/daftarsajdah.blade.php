@@ -34,6 +34,7 @@
       src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"
       async="">
     </script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <script async custom-element="amp-audio" src="https://cdn.ampproject.org/v0/amp-audio-0.1.js"></script>
     @include('amp.css')
   </head>
@@ -45,10 +46,6 @@
           <h1 class="h2 px3">{{ $title }}</h1>
           <span class="block px3 mb2">سْمِ ٱللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
         </header>
-        <form class="sample-form my3" method="GET" action="/quran/search/" target="_top">
-          <input type="search" class="py1 px1" placeholder="Cari ayat tentang..." value="{{ request()->get('query') }}" name="query">
-          <button type="submit" class="py1">Search</button>
-        </form>
       </article>
       <ul class="list-reset">
         @if($data)

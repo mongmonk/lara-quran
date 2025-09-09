@@ -44,7 +44,7 @@
           <span class="block my3 arab">سْمِ ٱللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
           <h1 class="h2">{{ $title }}</h1>          
         </header>
-        <form class="sample-form my3" method="GET" action="/hadits/search/{{ request()->segment(2) !== 'search' ? request()->segment(2) : request()->segment(3) }}" target="_top">
+        <form class="sample-form my3" method="GET" action="/hadits/{{ request()->segment(2) }}">
           <input type="search" class="py1 px1" placeholder="H.R. {{ $perowi }} tentang..." value="{{ request()->get('query') }}" name="query">
           <button type="submit" class="py1">Search</button>
         </form>
