@@ -373,17 +373,18 @@ class QuranController extends Controller
         $data['pesan'] = false;
 
         if (request()->isMethod('post')) {
-            $post = request()->all();
-            $nama = $post['nama'];
-            $email = $post['email'];
-            $wa = $post['wa'];
-            $pesan = $post['pesan'];
+            $validated = request()->validate([
+                'nama' => 'required|string|min:3|max:30',
+                'email' => 'required|email',
+                'wa' => 'required|string|min:9|max:13',
+                'pesan' => 'required|string|min:5',
+            ]);
+
             $site = 'My QUR`AN';
 
-            $text = "<b>PESAN BARU DARI {$site}</b>\n\nNAMA: {$nama}\nEMAIL: {$email}\nNO.WA: {$wa}\nPESAN: {$pesan}";
+            $text = "<b>PESAN BARU DARI {$site}</b>\n\nNAMA: {$validated['nama']}\nEMAIL: {$validated['email']}\nNO.WA: {$validated['wa']}\nPESAN: {$validated['pesan']}";
 
-            // In a real implementation, you would send this to Telegram
-            // $this->quran->kirimTelegram($text);
+            $this->quran->kirimTelegram($text);
 
             $data['pesan'] = "<div class='alert alert-success'>Terimakasih sudah menghubungi kami.<br>Pesan berhasil terkirim ke admin {$site}. Insyaallah secepatnya akan kami kabari lewat WhatsApp</div>";
         }

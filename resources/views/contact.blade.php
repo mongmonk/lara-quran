@@ -33,19 +33,31 @@
                     <div class="row">
                         <label class="col-2 my-3">Nama <small class="text-danger">*</small></label>
                         <div class="col-10 my-2">
-                            <input class="form-control" name="nama" placeholder="Ahmad Karim" required>
+                            <input class="form-control @error('nama') is-invalid @enderror" name="nama" placeholder="Ahmad Karim" value="{{ old('nama') }}" required>
+                            @error('nama')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <label class="col-2 my-3">Email <small class="text-danger">*</small></label>
                         <div class="col-10 my-2">
-                            <input type="email" class="form-control" name="email" placeholder="name@domain.com" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="name@domain.com" value="{{ old('email') }}" required>
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <label class="col-2 my-3">No.WA <small class="text-danger">*</small></label>
                         <div class="col-10 my-2">
-                            <input type="number" class="form-control" name="wa" placeholder="081xxxxxxxxx" required>
+                            <input type="number" class="form-control @error('wa') is-invalid @enderror" name="wa" placeholder="081xxxxxxxxx" value="{{ old('wa') }}" required>
+                            @error('wa')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <label class="col-2 my-3">Pesan <small class="text-danger">*</small></label>
                         <div class="col-10 my-2">
-                            <textarea class="form-control" name="pesan" placeholder="Tuliskan pesan disini" required></textarea>
+                            <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" placeholder="Tuliskan pesan disini" required>{{ old('pesan') }}</textarea>
+                            @error('pesan')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-10"></div>
                         <div class="col-md-2 my2"><button class="btn btn-success form-control" type="submit">Kirim Pesan</button></div>

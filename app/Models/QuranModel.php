@@ -684,4 +684,44 @@ class QuranModel extends Model
 
         return null;
     }
+    /**
+     * Send a message to Telegram.
+     *
+     * @param  string  $text
+     * @return \Illuminate\Http\Client\Response|null
+     */
+    public function kirimTelegram($text)
+    {
+        $botToken = config('services.telegram.bot_token');
+        $chatId = config('services.telegram.chat_id');
+
+        if (! $botToken || ! $chatId) {
+            \Log::error('Telegram Bot Token or Chat ID is not configured.');
+
+            return null;
+        }
+
+        try {
+            $response = Http::post("https://api.telegram.org/bot{$botToken}/sendMessage", [
+                'chat_id' => $chatId,
+                'text' => $text,
+                'parse_mode' => 'HTML',
+            ]);
+
+            if (! $response->successful()) {
+                \Log::error('Failed to send Telegram message.', [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+            }
+
+            return $response;
+        } catch (\Exception $e) {
+            \Log::error('Exception occurred while sending Telegram message: '.$e->getMessage(), [
+                'exception' => $e,
+            ]);
+
+            return null;
+        }
+    }
 }

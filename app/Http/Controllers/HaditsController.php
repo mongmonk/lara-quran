@@ -15,11 +15,10 @@ class HaditsController extends Controller
 
     public function search($book, $page = 1)
     {
-        $query = request()->get('query');
         $page = max(1, (int) $page);
         $perPage = 25;
 
-        // Menentukan nama perowi berdasarkan buku
+        // Menentukan nama perowi berdasarkan buku dan validasi parameter {book}
         $perowiMap = [
             'bukhari' => 'Bukhari',
             'muslim' => 'Muslim',
@@ -31,7 +30,15 @@ class HaditsController extends Controller
             'nasai' => 'Nasa`i',
             'tirmidzi' => 'Tirmidzi',
         ];
-        $data['perowi'] = $perowiMap[$book] ?? ucfirst($book);
+
+        // Validasi untuk mencegah Path Traversal dengan memastikan $book ada di dalam whitelist
+        if (!isset($perowiMap[$book])) {
+            abort(404, 'Kitab hadits tidak ditemukan.');
+        }
+        $data['perowi'] = $perowiMap[$book];
+
+        // Membersihkan input pencarian untuk hanya mengizinkan alfanumerik dan spasi
+        $query = preg_replace('/[^a-zA-Z0-9\s]/', '', request()->get('query', ''));
 
         if ($query) {
             // Logika untuk pencarian
