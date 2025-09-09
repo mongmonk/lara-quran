@@ -84,4 +84,13 @@ Meskipun sebagian besar data disajikan dari file JSON, database SQLite digunakan
 *   `jadwal_sholat_harian`: Menyimpan jadwal sholat yang dikustomisasi untuk masjid-masjid.
 
 ## Kontribusi
-Saat ini, kontribusi tidak dibuka untuk proyek ini. Namun, Anda dapat melakukan fork pada repositori dan memodifikasinya sesuai kebutuhan Anda.
+Kami menyambut baik kontribusi dari siapa saja. Jika Anda ingin berkontribusi pada proyek ini, silakan ikuti langkah-langkah berikut:
+
+1.  **Fork repositori:** Buat fork dari repositori ini ke akun GitHub Anda.
+2.  **Buat branch baru:** Buat branch baru untuk fitur atau perbaikan bug Anda (`git checkout -b fitur/nama-fitur-anda`).
+3.  **Lakukan perubahan:** Lakukan perubahan yang diperlukan pada kode.
+4.  **Commit perubahan Anda:** Commit perubahan Anda dengan pesan yang jelas (`git commit -m 'Menambahkan fitur X'`).
+5.  **Push ke branch Anda:** Push perubahan Anda ke branch di repositori fork Anda (`git push origin fitur/nama-fitur-anda`).
+6.  **Buat Pull Request:** Buka Pull Request dari branch Anda ke branch `main` dari repositori ini.
+
+Pastikan untuk mengikuti standar pengkodean yang ada dan mendokumentasikan setiap perubahan besar.
