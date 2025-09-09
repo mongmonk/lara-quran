@@ -24,13 +24,13 @@
       <div class="post">
         <p class="text-center arab my-4 mx-2">سْمِ ٱللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
         <h1 class="h2 text-center">{{ $title }}</h1>
-        <p class="my-2">{!! $data->deskripsi !!}</p>
+        <p class="my-2">{!! $data['deskripsi'] !!}</p>
         <div class="center" focus>
           <!-- Tafsir content -->
-          @foreach($data->tafsir as $i => $list)
+          @foreach($data['tafsir'] as $i => $list)
               <div class="mb-3">
-                <p><a href="{{ url("bot/ayah?number={$list->ayat}") }}">[ {{ $list->ayat }} ]</a></p>
-                <p>{!! $list->tafsir !!}</p>
+                <p><a href="{{ url("bot/ayah?number={$list['ayat']}") }}">[ {{ $list['ayat'] }} ]</a></p>
+                <p>{!! $list['tafsir'] !!}</p>
                 <div class="line"></div>
               </div>
           @endforeach

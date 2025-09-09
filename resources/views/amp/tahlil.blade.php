@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <title>{{ $title }}</title>
-    <meta name="google-site-verification" content="v41YLnzLxTtkqUVRPNP4qRvhFd4OLz5SHvhimMvEv7w" />
+    <meta name="google-site-verification" content="{{ config('app.google_site_verification') }}" />
     <link rel="canonical" href="{{ url()->current() }}" />
-    <meta name="description" value="Jadikanlah Al-quranul Karim dan Sunnah Nabi sebagai tuntunan hidupmu agar kamu tidak sesat">
+    <meta name="description" value="{{ config('app.description') }}">
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="My QUR`AN" />
-    <meta property="og:description" content="Jadikanlah Al-quranul Karim dan Sunnah Nabi sebagai tuntunan hidupmu agar kamu tidak sesat" />
+    <meta property="og:title" content="{{ config('app.name') }}" />
+    <meta property="og:description" content="{{ config('app.description') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="My QUR`AN" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="{{ asset('inc/alquran.png') }}" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="500" />
@@ -78,7 +78,7 @@
           </li>
         </ul>
       </nav>
-      <p>&copy;{{ date('Y') }} <a href="{{ url('/') }}">My QUR`AN</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></p>
+      <p>&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></p>
     </footer>
   </body>
 </html>

@@ -60,10 +60,10 @@
                     <a href="/quran/jadwalsholatharian">JADWAL SHOLAT UNTUK MASJID</a>
                 </li>
                 <li>
-                    <a href="/quran/about">TENTANG My QUR`AN</a>
+                    <a href="/quran/about">TENTANG {{ config('app.name') }}</a>
                 </li>
                 <li>
-                    <a href="/quran/contact">HUBUNGI My QUR`AN</a>
+                    <a href="/quran/contact">HUBUNGI {{ config('app.name') }}</a>
                 </li>
                 <li>
                     <a href="/quran/privacy">PRIVACY POLICY</a>
@@ -86,8 +86,8 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="navbar-btn">☰</button>
-                    <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="My QUR`AN">
-                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="My QUR`AN"/>
+                    <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="{{ config('app.name') }}">
+                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="{{ config('app.name') }}"/>
                     </a>
                 </div>
             </nav>

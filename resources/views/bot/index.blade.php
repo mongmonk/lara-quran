@@ -51,7 +51,7 @@
       <div class="col-4">
         <form action="/bot">
           <select class="form-control" name="page" onchange="this.form.submit()">
-            @foreach (app('quran')->getMeta()->data->surahs->references as $surah)
+            @foreach (app('quran')->getMeta()['data']['surahs']['references'] as $surah)
               @php
                 $surat = $surah['number'];
                 $page = request()->get('page');

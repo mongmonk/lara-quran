@@ -12,7 +12,7 @@
     <meta property="og:title" content="{{ $title }}" />
     <meta property="og:description" content="Al-quran {{ $title }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="My QUR`AN" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="{{ asset('inc/alquran.png') }}" />
     <meta property="og:image:type" content="image/png" />
     @include('css')
@@ -78,7 +78,7 @@
                     @include('reciter')
               </div>
             </div>
-            <div class="text-center text-secondary">&copy;{{ date('Y') }} <a href="{{ url('/') }}">My QUR`AN</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
+            <div class="text-center text-secondary">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

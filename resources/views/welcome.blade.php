@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to My QUR`AN</title>
+	<title>Welcome to {{ config('app.name') }}</title>
 
 	<style type="text/css">
 
@@ -92,7 +92,7 @@
 </head>
 <body>
 	<div id="container">
-		<h1>Welcome to My QUR`AN</h1>
+		<h1>Welcome to {{ config('app.name') }}</h1>
 
 		<div id="body">
 			<p>The page you are looking at is being generated dynamically by Laravel.</p>
@@ -103,7 +103,7 @@
 			<p>The corresponding controller for this page is found at:</p>
 			<code>app/Http/Controllers/WelcomeController.php</code>
 
-			<p>If you are exploring My QUR`AN for the very first time, you should start by reading the documentation.</p>
+			<p>If you are exploring {{ config('app.name') }} for the very first time, you should start by reading the documentation.</p>
 		</div>
 
 		<p class="footer">Page rendered in <strong>{{ number_format(microtime(true) - LARAVEL_START, 3) }}</strong> seconds.</p>

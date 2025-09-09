@@ -78,10 +78,10 @@
                     <a href="/quran/jadwalsholatharian">JADWAL SHOLAT UNTUK MASJID</a>
                 </li>
                 <li>
-                    <a href="/quran/about">TENTANG My QUR`AN</a>
+                    <a href="/quran/about">TENTANG {{ config('app.name') }}</a>
                 </li>
                 <li>
-                    <a href="/quran/contact">HUBUNGI My QUR`AN</a>
+                    <a href="/quran/contact">HUBUNGI {{ config('app.name') }}</a>
                 </li>
                 <li>
                     <a href="/quran/privacy">PRIVACY POLICY</a>
@@ -104,8 +104,8 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="navbar-btn">☰</button>
-                    <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="My QUR`AN">
-                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="My QUR`AN"/>
+                    <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="{{ config('app.name') }}">
+                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="{{ config('app.name') }}"/>
                     </a>
                 </div>
             </nav>
@@ -165,7 +165,7 @@
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
                 <div class="line"></div>
-                <h3 class="my-3">Daftar Masjid Yang Menggunakan Jadwal Sholat My QUR`AN</h3>
+                <h3 class="my-3">Daftar Masjid Yang Menggunakan Jadwal Sholat {{ config('app.name') }}</h3>
                 <ul class="list-group">
                     @foreach ($masjid as $key => $value)
                         @if (Auth::check() && Auth::id() == $value->chat_id)
@@ -177,7 +177,7 @@
                 </ul>
             </div>
             <div class="footer">
-                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">My QUR`AN</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
+                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
             </div>          
         </div>
     </div>

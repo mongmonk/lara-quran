@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title }}</title>
-    <meta name="google-site-verification" content="v41YLnzLxTtkqUVRPNP4qRvhFd4OLz5SHvhimMvEv7w" />
+    <meta name="google-site-verification" content="{{ config('app.google_site_verification') }}" />
     <link rel="canonical" href="{{ url('/') }}" />
-    <meta name="description" value="Jadikanlah Al-quranul Karim dan Sunnah Nabi sebagai tuntunan hidupmu agar kamu tidak sesat">
+    <meta name="description" value="{{ config('app.description') }}">
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="My QUR`AN" />
-    <meta property="og:description" content="Jadikanlah Al-quranul Karim dan Sunnah Nabi sebagai tuntunan hidupmu agar kamu tidak sesat" />
+    <meta property="og:title" content="{{ config('app.name') }}" />
+    <meta property="og:description" content="{{ config('app.description') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="My QUR`AN" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="{{ asset('inc/alquran.png') }}" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="500" />
@@ -26,7 +26,7 @@
             <div class="post">
                 <h5 class="text-center mb-3">السلام عليكم ورحمة الله وبركاته</h5>
                 <h2 class="text-center mb-3">{{ $title }}</h2>
-                <p>Berikut adalah list API Partner yang digunakan My QUR`AN dalam pengembangannya. Teriring doa jazakumullahu ahsanal jaza` fiddini waddunya wal akhirah buat pengembang API berikut. Semoga Allah selalu menyertai setiap aktifitasmu. Amiin</p>
+                <p>Berikut adalah list API Partner yang digunakan {{ config('app.name') }} dalam pengembangannya. Teriring doa jazakumullahu ahsanal jaza` fiddini waddunya wal akhirah buat pengembang API berikut. Semoga Allah selalu menyertai setiap aktifitasmu. Amiin</p>
                 <ol>
                     <li><a href="https://alquran.cloud/" target="_blank">Al Quran Cloud - A Full Featured Quran App</a></li>
                     <li><a href="https://github.com/gadingnst/hadith-api" target="_blank">Hadith-API</a></li>
@@ -36,7 +36,7 @@
                 </ol> 
             </div>
             <div class="footer">
-                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">My QUR`AN</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
+                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
             </div>          
         </div>
     </div>

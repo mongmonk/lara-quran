@@ -12,7 +12,7 @@
     <meta property="og:title" content="{{ $title }}" />
     <meta property="og:description" content="Al-quran {{ $title }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="My QUR`AN" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="{{ asset('inc/alquran.png') }}" />
     <meta property="og:image:type" content="image/png" />
     @include('css')

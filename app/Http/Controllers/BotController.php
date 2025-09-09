@@ -41,9 +41,11 @@ class BotController extends Controller
     
     public function surah()
     {
-        $get = $this->quran->surahListStatis();
+        $surah = request()->get('surah', 1);
+        $get = $this->quran->getSurah((int)$surah);
         $data['data'] = $get;
         $data['title'] = 'Daftar Surah Bot ~ My QUR`AN';
+        $data['currentSurah'] = $surah;
         return view('bot.surah', $data);
     }
     
@@ -51,8 +53,35 @@ class BotController extends Controller
     {
         $number = request()->get('number', 1);
         $get = $this->quran->getAyah((int)$number);
+
+        if (empty($get)) {
+            abort(404, 'Ayah not found.');
+        }
+
+        $surahNum = $get[0]['surahNum'];
+        $ayatNum = $get[0]['ayat'];
+
+        $allTafsirs = $this->quran->tafsirSurah($surahNum);
+        $currentTafsir = ['tafsir' => 'Tafsir tidak ditemukan.']; // Default value
+
+        if (isset($allTafsirs['tafsir'])) {
+            foreach ($allTafsirs['tafsir'] as $tafsirItem) {
+                if ($tafsirItem['ayat'] == $ayatNum) {
+                    $currentTafsir = $tafsirItem;
+                    break;
+                }
+            }
+        }
+
+        $prevNum = ($number > 1) ? $number - 1 : 1;
+        $nextNum = $number + 1; // This could be improved by checking max ayah
+
         $data['data'] = $get;
         $data['title'] = 'Ayat Bot ~ My QUR`AN';
+        $data['tafsir'] = $currentTafsir;
+        $data['prev'] = "<a href='/bot/ayah?number={$prevNum}' class='btn btn-success'>&laquo; Prev</a>";
+        $data['next'] = "<a href='/bot/ayah?number={$nextNum}' class='btn btn-success'>Next &raquo;</a>";
+
         return view('bot.ayah', $data);
     }
     
@@ -71,6 +100,7 @@ class BotController extends Controller
         $get = $this->quran->tafsirSurah($surah);
         $data['data'] = $get;
         $data['title'] = 'Tafsir Bot ~ My QUR`AN';
+        $data['currentSurah'] = $surah;
         
         // Update tafsir counter for user
         // In a real implementation with file-based storage, you would update a counter file
@@ -85,6 +115,7 @@ class BotController extends Controller
         $get = $this->quran->getSurah($surah);
         $data['data'] = $get;
         $data['title'] = 'Per Surah Bot ~ My QUR`AN';
+        $data['currentSurah'] = $surah;
         
         // Update persurah counter for user
         // In a real implementation with file-based storage, you would update a counter file
@@ -99,6 +130,7 @@ class BotController extends Controller
         $get = $this->quran->getJuzStatis($juz);
         $data['data'] = $get;
         $data['title'] = 'Per Juz Bot ~ My QUR`AN';
+        $data['currentJuz'] = $juz;
         
         // Update perjuz counter for user
         // In a real implementation with file-based storage, you would update a counter file

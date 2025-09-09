@@ -5,7 +5,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-76383447-1');
+  gtag('config', '{{ config('app.google_analytics_id') }}');
 </script>
 <script>
 /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */

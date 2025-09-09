@@ -11,7 +11,7 @@
     <meta property="og:title" content="{{ $title }}" />
     <meta property="og:description" content="{{ $title }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="My QUR`AN" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="{{ asset('inc/images/background.png') }}" />
     <meta property="og:image:type" content="image/png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -387,7 +387,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'UA-76383447-1');
+      gtag('config', '{{ config('app.google_analytics_id') }}');
     </script>
   </head>
   <body>

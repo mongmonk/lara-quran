@@ -12,7 +12,7 @@
     <meta property="og:title" content="{{ $title }}" />
     <meta property="og:description" content="Al-quran {{ $title }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="My QUR`AN" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="{{ asset('inc/images/alquran.png') }}" />
     <meta property="og:image:type" content="image/png" />
     @include('css')
@@ -81,10 +81,10 @@
                     <a href="/quran/jadwalsholatharian">JADWAL SHOLAT UNTUK MASJID</a>
                 </li>
                 <li>
-                    <a href="/quran/about">TENTANG My QUR`AN</a>
+                    <a href="/quran/about">TENTANG {{ config('app.name') }}</a>
                 </li>
                 <li>
-                    <a href="/quran/contact">HUBUNGI My QUR`AN</a>
+                    <a href="/quran/contact">HUBUNGI {{ config('app.name') }}</a>
                 </li>
                 <li>
                     <a href="/quran/privacy">PRIVACY POLICY</a>
@@ -99,8 +99,8 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="navbar-btn">☰</button>
-                    <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="My QUR`AN">
-                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="My QUR`AN"/>
+                    <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}" title="{{ config('app.name') }}">
+                        <img src="{{ asset('inc/images/logo.png') }}" width='200' height='45' alt="{{ config('app.name') }}"/>
                     </a>
                 </div>
             </nav>
@@ -152,7 +152,7 @@
                     @endif
                 </div>
             </div>          
-        <div class="text-center text-secondary fixed-bottom">&copy;{{ date('Y') }} <a href="{{ url('/') }}">My QUR`AN</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
+        <div class="text-center text-secondary fixed-bottom">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -26,13 +26,13 @@
   >
     ☰
   </div>
-  <a class="my2 mx-auto" href="{{ url('/') }}" title="My QUR`AN">
+  <a class="my2 mx-auto" href="{{ url('/') }}" title="{{ config('app.name') }}">
     <amp-img
       src="{{ asset('inc/images/logo.png') }}"
       width="200"
       height="45"
       layout="fixed"
-      alt="My QUR`AN"
+      alt="{{ config('app.name') }}"
     ></amp-img>
   </a>
 </header>
