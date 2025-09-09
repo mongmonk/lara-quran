@@ -13,6 +13,17 @@ MyQur'an adalah aplikasi web Al-Qur'an dan Hadits yang kaya fitur, yang awalnya 
 *   **Integrasi Bot Telegram:** Berinteraksi dengan fungsionalitas Al-Qur'an melalui bot Telegram.
 *   **Kustomisasi Masjid:** Pengguna dapat mendaftarkan masjid mereka dan menyesuaikan jadwal sholat.
 
+## Demo
+Anda dapat melihat demo langsung dari aplikasi ini di [https://myquran.cloud](https://myquran.cloud).
+
+## Sumber API
+Aplikasi ini menggunakan beberapa API eksternal untuk menyediakan datanya:
+*   [Al Quran Cloud](https://alquran.cloud/): Untuk data teks dan terjemahan Al-Qur'an.
+*   [Hadith-API](https://github.com/gadingnst/hadith-api): Untuk koleksi hadits.
+*   [API myQuran](https://api.myquran.com/): Untuk jadwal sholat.
+*   [API Doa Sehari-hari](https://doa-doa-api-ahmadramadhan.fly.dev/): Untuk doa-doa harian.
+*   [API Doa Tahlil](https://github.com/Kieza17/doa-tahlil): Untuk bacaan Tahlil.
+
 ## Teknologi yang Digunakan (Tech Stack)
 *   **Framework:** Laravel 12.28.1
 *   **Bahasa:** PHP 8.2.13
