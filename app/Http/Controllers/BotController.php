@@ -22,13 +22,20 @@ class BotController extends Controller
     
     public function index()
     {
+        $page = request()->get('page', 1);
+        $quranData = $this->quran->getPage((int)$page);
         $data['title'] = 'My QUR`AN Bot';
+        $data['data'] = $quranData;
         return view('bot.index', $data);
     }
     
     public function juz()
     {
+        $juz = request()->get('juz', 1);
+        $quranData = $this->quran->getJuzStatis((int)$juz);
         $data['title'] = 'Daftar Juz Bot ~ My QUR`AN';
+        $data['data'] = $quranData;
+        $data['currentJuz'] = $juz;
         return view('bot.juz', $data);
     }
     
