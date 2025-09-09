@@ -161,7 +161,7 @@
                 </ul>
             </div>
             <div class="footer">
-                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></div>
+                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="mailto:akunpribadiku@gmail.com">akunpribadiku@gmail.com</a></div>
             </div>          
         </div>
     </div>

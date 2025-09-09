@@ -76,7 +76,7 @@
           </li>
         </ul>
       </nav>
-      <p>&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="https://t.me/cemonggaul">Cemonggaul</a></p>
+      <p>&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="mailto:akunpribadiku@gmail.com">akunpribadiku@gmail.com</a></p>
     </footer>
   </body>
 </html>
