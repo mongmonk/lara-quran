@@ -350,14 +350,14 @@ class QuranController extends Controller
     {
         $data['title'] = 'Tentang My QUR`AN';
 
-        return view('about', $data);
+        return view('amp.about', $data);
     }
 
     public function privacy()
     {
         $data['title'] = 'Tentang My QUR`AN';
 
-        return view('privacy', $data);
+        return view('amp.privacy', $data);
     }
 
     public function partnerapi()
@@ -389,7 +389,7 @@ class QuranController extends Controller
             $data['pesan'] = "<div class='alert alert-success'>Terimakasih sudah menghubungi kami.<br>Pesan berhasil terkirim ke admin {$site}. Insyaallah secepatnya akan kami kabari lewat WhatsApp</div>";
         }
 
-        return view('contact', $data);
+        return view('amp.contact', $data);
     }
 
 

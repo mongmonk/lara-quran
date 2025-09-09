@@ -116,6 +116,15 @@
       <li class="ampstart-nav-item">
         <a class="ampstart-nav-link" href="/quran/partnerapi">PARTNER API</a>
       </li>
+      <li class="ampstart-nav-item">
+        <a class="ampstart-nav-link" href="/quran/about">TENTANG {{ config('app.name') }}</a>
+      </li>
+      <li class="ampstart-nav-item">
+        <a class="ampstart-nav-link" href="/quran/contact">HUBUNGI {{ config('app.name') }}</a>
+      </li>
+      <li class="ampstart-nav-item">
+        <a class="ampstart-nav-link" href="/quran/privacy">PRIVACY POLICY</a>
+      </li>
     </ul>
   </nav>
 </amp-sidebar>

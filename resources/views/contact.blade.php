@@ -24,8 +24,8 @@
 <body>
     <div class="wrapper">
         @include('sidenav')
-            <div class="post">
-                <h5 class="text-center mb-3">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h5>
+            <div class="post px-3">
+                <h2 class="text-center mb-3 arab" style="color: #1e3d73;">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h2>
                 <p>Silahkan isi from berikut untuk menghubungi {{ config('app.name') }}</p>
                 {!! $pesan !!}
                 <form method="post">
