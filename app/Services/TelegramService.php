@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 class TelegramService
 {
     protected $botToken;
+
     protected $apiUrl;
 
     public function __construct()

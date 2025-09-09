@@ -1,61 +1,87 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# MyQur'an Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Deskripsi Proyek
+MyQur'an adalah aplikasi web Al-Qur'an dan Hadits yang kaya fitur, yang awalnya dibangun dengan CodeIgniter dan sekarang telah di-refactor ke Laravel. Proyek ini dirancang untuk menyediakan akses mudah ke teks Al-Qur'an, terjemahan, tafsir, koleksi hadits, dan jadwal sholat. Salah satu fitur arsitektur utamanya adalah penggunaan sistem cache berbasis file JSON, yang menggantikan kebutuhan akan database tradisional untuk sebagian besar konten.
 
-## About Laravel
+## Fitur Utama
+*   **Penjelajahan Al-Qur'an:** Lihat Al-Qur'an berdasarkan Surah, Juz, Ruku', atau Halaman.
+*   **Pencarian Lanjutan:** Cari di dalam teks Al-Qur'an dan koleksi Hadits.
+*   **Koleksi Hadits:** Akses koleksi hadits dari para perawi besar seperti Bukhari, Muslim, Abu Daud, dan lainnya.
+*   **Jadwal Sholat:** Dapatkan jadwal sholat yang akurat berdasarkan lokasi.
+*   **Sumber Daya Islami:** Akses doa-doa harian dan bacaan Tahlil.
+*   **Dukungan AMP:** Halaman yang dioptimalkan untuk seluler (Accelerated Mobile Pages) untuk pengalaman pengguna yang cepat di perangkat seluler.
+*   **Integrasi Bot Telegram:** Berinteraksi dengan fungsionalitas Al-Qur'an melalui bot Telegram.
+*   **Kustomisasi Masjid:** Pengguna dapat mendaftarkan masjid mereka dan menyesuaikan jadwal sholat.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Teknologi yang Digunakan (Tech Stack)
+*   **Framework:** Laravel 12.28.1
+*   **Bahasa:** PHP 8.2.13
+*   **Database:** SQLite (untuk sesi, cache, dan data relasional lainnya)
+*   **Frontend:** Blade Templates, CSS, JavaScript
+*   **Caching:** Sistem cache kustom berbasis file JSON
+*   **Paket Utama:**
+    *   `laravel/framework`: 12.28.1
+    *   `laravel/prompts`: 0.3.6
+    *   `laravel/pint`: 1.24.0
+    *   `laravel/sail`: 1.45.0
+    *   `phpunit/phpunit`: 11.5.36
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Panduan Instalasi dan Konfigurasi
+1.  **Clone repositori:**
+    ```bash
+    git clone https://github.com/your-username/myquran-lara.git
+    cd myquran-lara
+    ```
+2.  **Instal dependensi:**
+    ```bash
+    composer install
+    npm install
+    ```
+3.  **Buat file `.env`:**
+    Salin `.env.example` ke `.env` dan konfigurasikan variabel lingkungan Anda, terutama `APP_NAME`, `APP_URL`, dan `TELEGRAM_BOT_TOKEN`.
+    ```bash
+    cp .env.example .env
+    ```
+4.  **Hasilkan kunci aplikasi:**
+    ```bash
+    php artisan key:generate
+    ```
+5.  **Jalankan migrasi database:**
+    Proyek ini menggunakan SQLite, jadi pastikan file `database/database.sqlite` ada.
+    ```bash
+    touch database/database.sqlite
+    php artisan migrate
+    ```
+6.  **Jalankan server pengembangan:**
+    ```bash
+    php artisan serve
+    ```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Struktur Proyek
+Proyek ini mengikuti struktur direktori standar Laravel, dengan beberapa penyesuaian penting:
+*   `app/Http/Controllers`: Berisi controller utama untuk fungsionalitas Al-Qur'an, Hadits, Bot, dan halaman umum.
+*   `app/Models`: Berisi model-model yang berinteraksi dengan data, termasuk `QuranModel` yang sekarang sudah tidak digunakan lagi dan digantikan oleh `CacheService`.
+*   `app/Services`: Berisi `CacheService` untuk mengelola cache berbasis file dan `TelegramService` untuk integrasi bot.
+*   `resources/views`: Berisi semua template Blade, dengan subdirektori untuk halaman AMP (`amp`) dan tampilan bot (`bot`).
+*   `storage/app/cache`: Direktori utama untuk file cache JSON, diatur berdasarkan kategori (quran, hadits, prayers, locations).
+*   `public/inc`: Berisi semua aset statis seperti gambar, font, audio, JS, dan CSS.
 
-## Learning Laravel
+## Endpoint API
+Aplikasi ini mengekspos beberapa endpoint untuk fungsionalitas intinya:
+*   `/`: Halaman utama, menampilkan indeks Al-Qur'an.
+*   `/surah/{surah}`: Menampilkan surah tertentu.
+*   `/juz/{juz}`: Menampilkan juz tertentu.
+*   `/hadits/{kitab}`: Menampilkan koleksi hadits dari kitab tertentu.
+*   `/jadwal/{masjid}`: Menampilkan jadwal sholat untuk masjid tertentu.
+*   `/bot/webhook`: Endpoint untuk webhook bot Telegram.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Struktur Database
+Meskipun sebagian besar data disajikan dari file JSON, database SQLite digunakan untuk tabel-tabel berikut:
+*   `users`: Menyimpan informasi pengguna, termasuk detail Telegram untuk integrasi bot.
+*   `sessions`: Menyimpan data sesi pengguna.
+*   `cache` & `cache_locks`: Digunakan oleh sistem cache Laravel.
+*   `jobs` & `failed_jobs`: Digunakan untuk antrian (queueing).
+*   `jadwal_sholat_harian`: Menyimpan jadwal sholat yang dikustomisasi untuk masjid-masjid.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Kontribusi
+Saat ini, kontribusi tidak dibuka untuk proyek ini. Namun, Anda dapat melakukan fork pada repositori dan memodifikasinya sesuai kebutuhan Anda.

@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Models\QuranModel;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Register the QuranModel as a singleton with the 'quran' alias
         $this->app->singleton('quran', function ($app) {
-            return new QuranModel();
+            return new QuranModel;
         });
     }
 

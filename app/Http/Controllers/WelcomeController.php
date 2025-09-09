@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 
 class WelcomeController extends Controller
 {
@@ -17,62 +16,63 @@ class WelcomeController extends Controller
     {
         return view('login');
     }
-    
+
     public function authorization(Request $request)
     {
         // Get all request parameters
         $auth_data = $request->all();
-        
+
         // Check if required parameters exist
-        if (!isset($auth_data['id']) || !isset($auth_data['hash']) || !isset($auth_data['auth_date'])) {
+        if (! isset($auth_data['id']) || ! isset($auth_data['hash']) || ! isset($auth_data['auth_date'])) {
             return redirect('/login')->with('error', 'Autentikasi tidak valid.');
         }
-        
+
         // Check if auth_date is not too old (5 minutes)
-        if (time() - (int)$auth_data['auth_date'] > 300) {
+        if (time() - (int) $auth_data['auth_date'] > 300) {
             return redirect('/login')->with('error', 'Autentikasi telah kedaluwarsa.');
         }
-        
+
         // Validate Telegram authorization
         $bot_token = env('TELEGRAM_BOT_TOKEN');
-        
+
         // Check if bot token is set
         if (empty($bot_token)) {
             return redirect('/login')->with('error', 'Token bot Telegram belum diatur. Silakan hubungi administrator.');
         }
-        
+
         // Create data check string
         $data_check_arr = [];
         foreach ($auth_data as $key => $value) {
             if ($key !== 'hash') {
-                $data_check_arr[] = $key . '=' . $value;
+                $data_check_arr[] = $key.'='.$value;
             }
         }
         sort($data_check_arr);
         $data_check_string = implode("\n", $data_check_arr);
-        
+
         // Generate secret key
         $secret_key = hash('sha256', $bot_token, true);
-        
+
         // Generate hash
         $hash = hash_hmac('sha256', $data_check_string, $secret_key);
-        
+
         // Validate hash
         if ($hash !== $auth_data['hash']) {
             Log::error('Telegram Authentication Failed: Hash mismatch.');
+
             return redirect('/login')->with('error', 'Autentikasi tidak valid. Token bot mungkin tidak sesuai.');
         }
-        
+
         Log::info('Telegram Authentication Success', $auth_data);
 
         // Find or create the user
         $user = User::updateOrCreate(
             ['chat_id' => $auth_data['id']],
             [
-                'name' => trim(($auth_data['first_name'] ?? '') . ' ' . ($auth_data['last_name'] ?? '')),
+                'name' => trim(($auth_data['first_name'] ?? '').' '.($auth_data['last_name'] ?? '')),
                 'username' => $auth_data['username'] ?? null,
-                'email' => $auth_data['id'] . '@telegram.user', // Placeholder email
-                'password' => Hash::make(Str::random(20)) // Dummy password
+                'email' => $auth_data['id'].'@telegram.user', // Placeholder email
+                'password' => Hash::make(Str::random(20)), // Dummy password
             ]
         );
 
@@ -84,7 +84,7 @@ class WelcomeController extends Controller
         // Redirect to jadwalsholatharian page after login
         return redirect()->intended(route('quran.jadwalsholatharian'));
     }
-    
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -95,12 +95,12 @@ class WelcomeController extends Controller
 
         return redirect('/');
     }
-    
+
     public function image($file)
     {
-        $path = storage_path('app/public/' . $file);
+        $path = storage_path('app/public/'.$file);
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             abort(404);
         }
 
@@ -108,18 +108,18 @@ class WelcomeController extends Controller
         $type = File::mimeType($path);
 
         $response = response($file, 200);
-        $response->header("Content-Type", $type);
+        $response->header('Content-Type', $type);
 
         return $response;
     }
-    
+
     public function migrate()
     {
         // In a real implementation, you would handle migration logic
         // For now, we'll just return a placeholder response
         return response()->json(['status' => 'success', 'message' => 'Migration endpoint']);
     }
-    
+
     /**
      * Get Telegram user data
      */
@@ -129,7 +129,7 @@ class WelcomeController extends Controller
         // For now, we'll just return a placeholder response
         return response()->json(['message' => 'Telegram user data endpoint']);
     }
-    
+
     /**
      * Check Telegram authorization
      */
@@ -139,7 +139,7 @@ class WelcomeController extends Controller
         // For now, we'll just return a placeholder response
         return response()->json(['auth_data' => $auth_data, 'message' => 'Check Telegram authorization endpoint']);
     }
-    
+
     /**
      * Save Telegram user data
      */

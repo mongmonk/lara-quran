@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuranController;
-use App\Http\Controllers\HaditsController;
 use App\Http\Controllers\BotController;
+use App\Http\Controllers\HaditsController;
+use App\Http\Controllers\QuranController;
 use App\Http\Controllers\WelcomeController;
+use Illuminate\Support\Facades\Route;
 
 // Default route - Quran index
 Route::get('/', [QuranController::class, 'index']);
@@ -33,9 +33,9 @@ Route::get('/quran/daftarsajdah', [QuranController::class, 'daftarsajdah']);
 Route::get('/quran/tafsir/{surah}', [QuranController::class, 'tafsir']);
 Route::get('/quran/jadwalsholat', [QuranController::class, 'jadwalsholat']);
 Route::get('/quran/jadwalsholatharian/{masjid?}', [QuranController::class, 'jadwalsholatharian'])->name('quran.jadwalsholatharian')->middleware('auth');
-    Route::post('/quran/jadwalsholatharian', [QuranController::class, 'storeJadwalSholatHarian'])->middleware('auth');
-        Route::post('/quran/editjadwal/{masjid}', [QuranController::class, 'updateJadwalSholatHarian'])->middleware('auth');
-        Route::get('/quran/editjadwal/{masjid}', [QuranController::class, 'editjadwal'])->middleware('auth');
+Route::post('/quran/jadwalsholatharian', [QuranController::class, 'storeJadwalSholatHarian'])->middleware('auth');
+Route::post('/quran/editjadwal/{masjid}', [QuranController::class, 'updateJadwalSholatHarian'])->middleware('auth');
+Route::get('/quran/editjadwal/{masjid}', [QuranController::class, 'editjadwal'])->middleware('auth');
 Route::get('/quran/tahlil', [QuranController::class, 'tahlil']);
 Route::get('/quran/about', [QuranController::class, 'about']);
 Route::get('/quran/privacy', [QuranController::class, 'privacy']);

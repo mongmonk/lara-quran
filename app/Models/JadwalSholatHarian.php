@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JadwalSholatHarian extends Model
 {
     protected $table = 'jadwal_sholat_harian';
-    
+
     protected $fillable = [
         'nama_masjid',
         'alamat',
@@ -17,10 +17,10 @@ class JadwalSholatHarian extends Model
         'pesan2',
         'id_kota',
         'url',
-        'chat_id'
+        'chat_id',
     ];
-    
+
     protected $casts = [
-        'id_kota' => 'integer'
+        'id_kota' => 'integer',
     ];
 }

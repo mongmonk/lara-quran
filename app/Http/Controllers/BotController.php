@@ -2,57 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\QuranModel;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Response;
 use App\Services\TelegramService;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class BotController extends Controller
 {
     protected $quran;
+
     protected $telegram;
-    
+
     public function __construct(TelegramService $telegram)
     {
-        $this->quran = new QuranModel();
+        $this->quran = new QuranModel;
         $this->telegram = $telegram;
     }
-    
+
     public function index()
     {
         $page = request()->get('page', 1);
-        $quranData = $this->quran->getPage((int)$page);
+        $quranData = $this->quran->getPage((int) $page);
         $data['title'] = 'My QUR`AN Bot';
         $data['data'] = $quranData;
+
         return view('bot.index', $data);
     }
-    
+
     public function juz()
     {
         $juz = request()->get('juz', 1);
-        $quranData = $this->quran->getJuzStatis((int)$juz);
+        $quranData = $this->quran->getJuzStatis((int) $juz);
         $data['title'] = 'Daftar Juz Bot ~ My QUR`AN';
         $data['data'] = $quranData;
         $data['currentJuz'] = $juz;
+
         return view('bot.juz', $data);
     }
-    
+
     public function surah()
     {
         $surah = request()->get('surah', 1);
-        $get = $this->quran->getSurah((int)$surah);
+        $get = $this->quran->getSurah((int) $surah);
         $data['data'] = $get;
         $data['title'] = 'Daftar Surah Bot ~ My QUR`AN';
         $data['currentSurah'] = $surah;
+
         return view('bot.surah', $data);
     }
-    
+
     public function ayah()
     {
         $number = request()->get('number', 1);
-        $get = $this->quran->getAyah((int)$number);
+        $get = $this->quran->getAyah((int) $number);
 
         if (empty($get)) {
             abort(404, 'Ayah not found.');
@@ -84,15 +88,16 @@ class BotController extends Controller
 
         return view('bot.ayah', $data);
     }
-    
+
     public function updatecounter()
     {
         $userid = request()->get('id');
+
         // In a real implementation with file-based storage, you would update a counter file
         // For now, we'll just return a JSON response
-        return response()->json(['status' => 'success', 'message' => 'Counter updated for user ' . $userid]);
+        return response()->json(['status' => 'success', 'message' => 'Counter updated for user '.$userid]);
     }
-    
+
     public function tafsir()
     {
         $userid = request()->get('id');
@@ -101,13 +106,13 @@ class BotController extends Controller
         $data['data'] = $get;
         $data['title'] = 'Tafsir Bot ~ My QUR`AN';
         $data['currentSurah'] = $surah;
-        
+
         // Update tafsir counter for user
         // In a real implementation with file-based storage, you would update a counter file
         // For now, we'll just return the view
         return view('bot.tafsir', $data);
     }
-    
+
     public function persurah()
     {
         $userid = request()->get('id');
@@ -116,13 +121,13 @@ class BotController extends Controller
         $data['data'] = $get;
         $data['title'] = 'Per Surah Bot ~ My QUR`AN';
         $data['currentSurah'] = $surah;
-        
+
         // Update persurah counter for user
         // In a real implementation with file-based storage, you would update a counter file
         // For now, we'll just return the view
         return view('bot.surah', $data);
     }
-    
+
     public function perjuz()
     {
         $userid = request()->get('id');
@@ -131,7 +136,7 @@ class BotController extends Controller
         $data['data'] = $get;
         $data['title'] = 'Per Juz Bot ~ My QUR`AN';
         $data['currentJuz'] = $juz;
-        
+
         // Update perjuz counter for user
         // In a real implementation with file-based storage, you would update a counter file
         // For now, we'll just return the view
@@ -153,11 +158,13 @@ class BotController extends Controller
 
         if ($contact) {
             $this->handleContact($chat_id, $contact);
+
             return response('OK', Response::HTTP_OK);
         }
 
         if ($location) {
             $this->handleLocation($chat_id, $location);
+
             return response('OK', Response::HTTP_OK);
         }
 
@@ -173,7 +180,14 @@ class BotController extends Controller
     private function handleStartCommand($chat_id)
     {
         $websiteUrl = config('app.url');
-        $text = "<b>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</b>\n\nLife is so short. Let's make Al-Qur`an Kareem and Sunnah the leader of our life.\n\nWebsite: {$websiteUrl}\n\nThis bot developed by @cemonggaul\n\nDonate: https://paypal.me/cemonggaul";
+        $text = "<b>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</b>
+        
+        Life is so short. Let's make Al-Qur`an Kareem and Sunnah the leader of our life.
+        
+        Website: {$websiteUrl}
+        
+        This bot developed by @cemonggaul
+        Donate: https://paypal.me/cemonggaul";
 
         $buttons = $this->getWebAppButtons($chat_id);
 
@@ -190,9 +204,9 @@ class BotController extends Controller
         $user = \App\Models\User::firstOrCreate(
             ['chat_id' => $chat_id],
             [
-                'name' => trim($firstName . ' ' . $lastName),
+                'name' => trim($firstName.' '.$lastName),
                 'username' => $username,
-                'password' => bcrypt(Str::random(16)) // Dummy password
+                'password' => bcrypt(Str::random(16)), // Dummy password
             ]
         );
 
@@ -204,7 +218,7 @@ class BotController extends Controller
         $phone_number = ltrim($contact['phone_number'], '+');
         // Basic phone number formatting, you might need a more robust solution
         if (substr($phone_number, 0, 2) === '62') {
-            $phone_number = '0' . substr($phone_number, 2);
+            $phone_number = '0'.substr($phone_number, 2);
         }
 
         $user = \App\Models\User::where('chat_id', $chat_id)->first();
@@ -239,38 +253,38 @@ class BotController extends Controller
     private function getWebAppButtons($chat_id)
     {
         return [
-            "inline_keyboard" => [
+            'inline_keyboard' => [
                 [
                     [
-                        "text" => "🕌🕌🕋🕋🕋 READ QUR`AN 🕋🕋🕋🕌🕌",
-                        "web_app" => ["url" => url('/bot')]
-                    ]
+                        'text' => '🕌🕌🕋🕋🕋 READ QUR`AN 🕋🕋🕋🕌🕌',
+                        'web_app' => ['url' => url('/bot')],
+                    ],
                 ],
                 [
                     [
-                        "text" => "🕌🕋 ID TRANSLATE PER JUZ 🕋🕌",
-                        "web_app" => ["url" => url('/bot/juz')]
-                    ]
+                        'text' => '🕌🕋 ID TRANSLATE PER JUZ 🕋🕌',
+                        'web_app' => ['url' => url('/bot/juz')],
+                    ],
                 ],
                 [
                     [
-                        "text" => "🕌🕋 ID TRANSLATE PER SURAH 🕋🕌",
-                        "web_app" => ["url" => url('/bot/surah')]
-                    ]
+                        'text' => '🕌🕋 ID TRANSLATE PER SURAH 🕋🕌',
+                        'web_app' => ['url' => url('/bot/surah')],
+                    ],
                 ],
                 [
                     [
-                        "text" => "🕌🕋 ID, EN TRANSLATE AND TAFSIR 🕋🕌",
-                        "web_app" => ["url" => url('/bot/ayah')]
-                    ]
+                        'text' => '🕌🕋 ID, EN TRANSLATE AND TAFSIR 🕋🕌',
+                        'web_app' => ['url' => url('/bot/ayah')],
+                    ],
                 ],
                 [
                     [
-                        "text" => "🕌🕋 SETTING PRAYING TIME 🗝🗝",
-                        "url" => url("/welcome/authorization?id=$chat_id")
-                    ]
-                ]
-            ]
+                        'text' => '🕌🕋 SETTING PRAYING TIME 🗝🗝',
+                        'url' => url("/welcome/authorization?id=$chat_id"),
+                    ],
+                ],
+            ],
         ];
     }
 }
