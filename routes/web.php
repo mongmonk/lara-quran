@@ -68,7 +68,7 @@ Route::get('/bot/jadwalsholat/auth/{chat_id}', [\App\Http\Controllers\BotControl
 Route::prefix('bot/jadwalsholat')->middleware('web', 'auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'index'])->name('bot.jadwalsholat.index');
     Route::get('/create', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'create'])->name('bot.jadwalsholat.create');
-    Route::post('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'store'])->name('bot.jadwalsholat.store');
+    Route::post('/create', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'store'])->name('bot.jadwalsholat.store');
     Route::get('/{masjid}/edit', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'edit'])->name('bot.jadwalsholat.edit');
-    Route::post('/{masjid}', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'update'])->name('bot.jadwalsholat.update');
+    Route::post('/{masjid}/edit', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'update'])->name('bot.jadwalsholat.update');
 });

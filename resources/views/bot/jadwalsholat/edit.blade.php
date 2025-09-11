@@ -27,7 +27,7 @@
             </div>
         @endif
 
-        <form method="post" action="{{ isset($jadwal) ? route('bot.jadwalsholat.update', $jadwal->url) : route('bot.jadwalsholat.store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ isset($jadwal) ? route('bot.jadwalsholat.update', ['masjid' => $jadwal->url]) : route('bot.jadwalsholat.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group my-2">
                 <label class="text-danger">Nama Masjid (max:36 karakter)*</label>
