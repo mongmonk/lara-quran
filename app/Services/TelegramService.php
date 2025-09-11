@@ -25,7 +25,7 @@ class TelegramService
         ];
 
         if ($replyMarkup) {
-            $payload['reply_markup'] = $replyMarkup;
+            $payload['reply_markup'] = is_array($replyMarkup) ? $replyMarkup : json_decode($replyMarkup, true);
         }
 
         return Http::post("{$this->apiUrl}/sendMessage", $payload);
@@ -33,6 +33,6 @@ class TelegramService
 
     public function removeKeyboard($chatId, $text)
     {
-        return $this->sendMessage($chatId, $text, json_encode(['remove_keyboard' => true]));
+        return $this->sendMessage($chatId, $text, ['remove_keyboard' => true]);
     }
 }

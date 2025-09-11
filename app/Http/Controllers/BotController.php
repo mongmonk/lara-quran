@@ -194,7 +194,7 @@ class BotController extends Controller
 
         $buttons = $this->getWebAppButtons($chat_id);
 
-        $this->telegram->sendMessage($chat_id, $text, json_encode($buttons));
+        $this->telegram->sendMessage($chat_id, $text, $buttons);
     }
 
     private function handleJadwalSholatCommand($chat_id)
@@ -211,7 +211,7 @@ class BotController extends Controller
             ],
         ];
 
-        $this->telegram->sendMessage($chat_id, $text, json_encode($buttons));
+        $this->telegram->sendMessage($chat_id, $text, $buttons);
     }
 
     private function processUser(Request $request)
@@ -247,7 +247,11 @@ class BotController extends Controller
         }
 
         $text = "Yang kedua\nUntuk meminimalisir buyer BID and RUN, silahkan share lokasi Anda dengan klik tombol <b><em>KIRIM LOKASI</em></b> di bawah ini lalu pilih OK dan ijinkan kami untuk mengakses lokasi Anda saat ini. 🙏🏻";
-        $button2 = '{"keyboard":[[{"text":"🗺🗺🗺 KIRIM LOKASI 🗺🗺🗺","request_location":true}]],"resize_keyboard":true,"one_time_keyboard":true}';
+        $button2 = [
+            'keyboard' => [[['text' => '🗺🗺🗺 KIRIM LOKASI 🗺🗺🗺', 'request_location' => true]]],
+            'resize_keyboard' => true,
+            'one_time_keyboard' => true,
+        ];
 
         $this->telegram->sendMessage($chat_id, $text, $button2);
     }
@@ -267,7 +271,7 @@ class BotController extends Controller
         $text = "Klik tombol dibawah ini untuk melihat lapak para seller kami\n\nHappy shopping 🤗";
         $buttons = $this->getWebAppButtons($chat_id);
 
-        $this->telegram->sendMessage($chat_id, $text, json_encode($buttons));
+        $this->telegram->sendMessage($chat_id, $text, $buttons);
     }
 
     private function getWebAppButtons($chat_id)
