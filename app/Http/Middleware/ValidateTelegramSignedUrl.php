@@ -5,15 +5,22 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 
 class ValidateTelegramSignedUrl
 {
     public function handle(Request $request, Closure $next)
     {
-        if (! $request->hasValidSignature()) {
-            abort(403, 'Invalid signature.');
-        }
+        Log::info('Telegram Web App Request:', [
+            'headers' => $request->headers->all(),
+            'query' => $request->query(),
+            'body' => $request->all(),
+        ]);
+
+        // if (! $request->hasValidSignature()) {
+        //     abort(403, 'Invalid signature.');
+        // }
 
         $chatId = $request->route('chat_id');
         
