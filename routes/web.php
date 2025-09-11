@@ -32,10 +32,6 @@ Route::get('/quran/daftarayat', [QuranController::class, 'daftarayat']);
 Route::get('/quran/daftarsajdah', [QuranController::class, 'daftarsajdah']);
 Route::get('/quran/tafsir/{surah}', [QuranController::class, 'tafsir']);
 Route::get('/quran/jadwalsholat', [QuranController::class, 'jadwalsholat']);
-Route::get('/quran/jadwalsholatharian/{masjid?}', [QuranController::class, 'jadwalsholatharian'])->name('quran.jadwalsholatharian')->middleware('auth');
-Route::post('/quran/jadwalsholatharian', [QuranController::class, 'storeJadwalSholatHarian'])->middleware('auth');
-Route::post('/quran/editjadwal/{masjid}', [QuranController::class, 'updateJadwalSholatHarian'])->middleware('auth');
-Route::get('/quran/editjadwal/{masjid}', [QuranController::class, 'editjadwal'])->middleware('auth');
 Route::get('/quran/tahlil', [QuranController::class, 'tahlil']);
 Route::get('/quran/about', [QuranController::class, 'about']);
 Route::get('/quran/privacy', [QuranController::class, 'privacy']);
@@ -59,3 +55,12 @@ Route::get('/bot/tafsir', [BotController::class, 'tafsir']);
 Route::get('/bot/persurah', [BotController::class, 'persurah']);
 Route::get('/bot/perjuz', [BotController::class, 'perjuz']);
 Route::post('/bot/webhook', [BotController::class, 'handleWebhook']);
+
+// bot webview
+Route::prefix('bot/jadwalsholat')->middleware('auth')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'index'])->name('bot.jadwalsholat.index');
+    Route::get('/create', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'create'])->name('bot.jadwalsholat.create');
+    Route::post('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'store'])->name('bot.jadwalsholat.store');
+    Route::get('/{masjid}/edit', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'edit'])->name('bot.jadwalsholat.edit');
+    Route::post('/{masjid}', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'update'])->name('bot.jadwalsholat.update');
+});

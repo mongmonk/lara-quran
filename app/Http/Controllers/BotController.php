@@ -172,6 +172,9 @@ class BotController extends Controller
             case '/start':
                 $this->handleStartCommand($chat_id);
                 break;
+            case '/jadwalsholat':
+                $this->handleJadwalSholatCommand($chat_id);
+                break;
         }
 
         return response('OK', Response::HTTP_OK);
@@ -190,6 +193,23 @@ class BotController extends Controller
         Donate: https://paypal.me/cemonggaul";
 
         $buttons = $this->getWebAppButtons($chat_id);
+
+        $this->telegram->sendMessage($chat_id, $text, json_encode($buttons));
+    }
+
+    private function handleJadwalSholatCommand($chat_id)
+    {
+        $text = "Silakan kelola jadwal sholat masjid Anda melalui tombol di bawah ini.";
+        $buttons = [
+            'inline_keyboard' => [
+                [
+                    [
+                        'text' => 'Buka Pengaturan Jadwal Sholat',
+                        'web_app' => ['url' => route('bot.jadwalsholat.index')],
+                    ],
+                ],
+            ],
+        ];
 
         $this->telegram->sendMessage($chat_id, $text, json_encode($buttons));
     }
@@ -280,8 +300,8 @@ class BotController extends Controller
                 ],
                 [
                     [
-                        'text' => '🕌🕋 SETTING PRAYING TIME 🗝🗝',
-                        'url' => url("/welcome/authorization?id=$chat_id"),
+                        'text' => '🕌🕋 PENGATURAN JADWAL SHOLAT 🗝🗝',
+                        'web_app' => ['url' => route('bot.jadwalsholat.index')],
                     ],
                 ],
             ],
