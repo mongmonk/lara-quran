@@ -48,6 +48,13 @@ class ValidateTelegramSignedUrl
         $secretKey = hash_hmac('sha256', $botToken, 'WebAppData', true);
         $calculatedHash = hash_hmac('sha256', $dataCheckString, $secretKey);
 
+        Log::info('Telegram Signature Validation:', [
+            'data_check_string' => $dataCheckString,
+            'received_hash' => $hash,
+            'calculated_hash' => $calculatedHash,
+            'is_match' => hash_equals($calculatedHash, $hash)
+        ]);
+
         if (hash_equals($calculatedHash, $hash)) {
             $userData = json_decode($data['user'], true);
             $chatId = $userData['id'] ?? null;
