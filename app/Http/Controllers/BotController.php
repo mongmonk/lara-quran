@@ -6,7 +6,6 @@ use App\Models\QuranModel;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class BotController extends Controller
@@ -145,8 +144,6 @@ class BotController extends Controller
 
     public function handleWebhook(Request $request)
     {
-        Log::info('Telegram webhook received:', $request->all());
-
         $chat_id = $request->input('message.chat.id');
         $message = $request->input('message.text');
         $contact = $request->input('message.contact');
