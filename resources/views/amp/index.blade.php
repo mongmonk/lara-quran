@@ -47,6 +47,12 @@
         </header>
       </article>
       <ul class="bold list-reset">
+        <li class="mb1 mx2 px3 btn center">
+          <a href="/quran/jadwalsholat">JADWAL SHOLAT BULANAN</a>
+        </li>
+        <li class="mb1 mx2 px3 btn center">
+          <a href="/quran/jadwalsholatharian">JADWAL SHOLAT UNTUK MASJID</a>
+        </li>
         <li class="mb1 mx2 px3 btn center"><a href="{{ url('quran/page') }}">ALQUR`AN PER HALAMAN</a></li>
         <li class="mb1 mx2 px3 btn center"><a href="{{ url('quran/daftarjuz') }}">ALQUR`AN PER JUZ</a></li>
         <li class="mb1 mx2 px3 btn center"><a href="{{ url('quran/daftarsurah') }}">ALQUR`AN PER SURAH</a></li>
@@ -61,7 +67,7 @@
           <a href="/hadits/muslim">HADITS RIWAYAT MUSLIM</a>
         </li>
         <li class="mb1 mx2 px3 btn center">
-          <a href="/hadits/abudaud">HADITS RIWAYAT ABU DAUD</a>
+          <a href="/hadits/abu-daud">HADITS RIWAYAT ABU DAUD</a>
         </li>
         <li class="mb1 mx2 px3 btn center">
           <a href="/hadits/ahmad">HADITS RIWAYAT AHMAD</a>
@@ -70,7 +76,7 @@
           <a href="/hadits/darimi">HADITS RIWAYAT DARIMI</a>
         </li>
         <li class="mb1 mx2 px3 btn center">
-          <a href="/hadits/ibnumajah">HADITS RIWAYAT IBNU MAJAH</a>
+          <a href="/hadits/ibnu-majah">HADITS RIWAYAT IBNU MAJAH</a>
         </li>
         <li class="mb1 mx2 px3 btn center">
           <a href="/hadits/malik">HADITS RIWAYAT MALIK</a>
@@ -86,12 +92,6 @@
         </li>
         <li class="mb1 mx2 px3 btn center">
           <a href="/quran/tahlil">TAHLIL</a>
-        </li>
-        <li class="mb1 mx2 px3 btn center">
-          <a href="/quran/jadwalsholat">JADWAL SHOLAT BULANAN</a>
-        </li>
-        <li class="mb1 mx2 px3 btn center">
-          <a href="/quran/jadwalsholatharian">JADWAL SHOLAT UNTUK MASJID</a>
         </li>
       </ul>
     </main>

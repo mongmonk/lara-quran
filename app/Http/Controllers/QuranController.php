@@ -88,7 +88,7 @@ class QuranController extends Controller
     {
         $get = $this->quran->getSurah((int) $surah);
         $data['data'] = $get;
-        $data['title'] = 'Surah '.$get['surahEn'].' ~ My QUR`AN';
+        $data['title'] = 'Surah '.$get[0]['surahEn'].' ~ My QUR`AN';
 
         return view('surah', $data);
     }
@@ -98,7 +98,7 @@ class QuranController extends Controller
         $get = $this->quran->getRuku((int) $ruku);
         $data['data'] = $get;
         $data['meta'] = $this->quran->getAllRukuStatis();
-        $data['title'] = "Ruku` ke {$ruku} Surah {$get['surahEn']} ~ My QUR`AN";
+        $data['title'] = "Ruku` ke {$ruku} Surah {$get[0]['surahEn']} ~ My QUR`AN";
 
         return view('ruku', $data);
     }
@@ -116,10 +116,15 @@ class QuranController extends Controller
     public function ayah($number)
     {
         $get = $this->quran->getAyah((int) $number);
-        $surah = $get['surahNum'];
-        $ayah = $get['ayat'];
-        $data['data'] = $get;
-        $namasurah = $get['surahEn'];
+
+        if (empty($get)) {
+            abort(404);
+        }
+
+        $data['data'] = $get[0];
+        $surah = $get[0]['surahNum'];
+        $ayah = $get[0]['ayat'];
+        $namasurah = $get[0]['surahEn'];
         $data['title'] = "Surat {$namasurah} Ayat {$ayah} ~ My QUR`AN";
         $data['surah'] = $surah;
         $data['ayah'] = $ayah;
@@ -134,7 +139,7 @@ class QuranController extends Controller
             $data['next'] = $number != 6236 ? '<a href="/ayah/'.$next.'?audio='.$getAudio.'" class="btn">NEXT ►</a>' : false;
         } else {
             $data['prev'] = $number != 1 ? '<a href="/ayah/'.$prev.'" class="btn">◄ PREV</a>' : false;
-            $data['next'] = $number != 6236 ? '<a href="/ayah/'.$next.'" class="btn"gt;NEXT ►</a>' : false;
+            $data['next'] = $number != 6236 ? '<a href="/ayah/'.$next.'" class="btn">NEXT ►</a>' : false;
         }
 
         return view('amp.ayah', $data);

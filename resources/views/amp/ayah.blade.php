@@ -6,11 +6,11 @@
     <title>{{ $title }}</title>
     <meta name="google-site-verification" content="{{ config('app.google_site_verification') }}" />
     <link rel="canonical" href="{{ url()->current() }}" />
-    <meta name="description" value="{{ $data[0]['id'] }}">
+    <meta name="description" value="{{ $data['id'] }}">
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ config('app.name') }}" />
-    <meta property="og:description" content="{{ $data[0]['id'] }}" />
+    <meta property="og:description" content="{{ $data['id'] }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="https://cdn.islamic.network/quran/images/high-resolution/{{ $surah }}_{{ $ayah }}.png" />
@@ -49,13 +49,13 @@
         </header>
       </article>
       <div class="px3">
-        <p class='text-right arab my2'>{!! $data[0]['ar'] !!} ﴿{{ app('quran')->numConverter($data[0]['ayat']) }}﴾</p>
-        <p class="my1"><span class="btn">ID Translation</span> {!! $data[0]['id'] !!}</p>
-        <p class="my1 pt1"><span class="btn">EN Translation</span> {!! $data[0]['en'] !!}</p>
+        <p class='text-right arab my2'>{!! $data['ar'] !!} ﴿{{ app('quran')->numConverter($data['ayat']) }}﴾</p>
+        <p class="my1"><span class="btn">ID Translation</span> {!! $data['id'] !!}</p>
+        <p class="my1 pt1"><span class="btn">EN Translation</span> {!! $data['en'] !!}</p>
         <p class="my1 pt1"><span class="btn">Tafsir</span> {!! $tafsir['tafsir'] !!}</p>
         <div class="row">
           <div class="col-6 px1">
-            <amp-audio class="mt2" width="auto" height="50" src="https://cdn.islamic.network/quran/audio/64/{{ request()->get('audio') ? request()->get('audio') : 'ar.alafasy' }}/{{ $data[0]['numList'] }}.mp3" autoplay>
+            <amp-audio class="mt2" width="auto" height="50" src="https://cdn.islamic.network/quran/audio/64/{{ request()->get('audio') ? request()->get('audio') : 'ar.alafasy' }}/{{ $data['numList'] }}.mp3" autoplay>
               <div fallback>Your browser doesn’t support HTML5 audio</div>
             </amp-audio>
           </div>

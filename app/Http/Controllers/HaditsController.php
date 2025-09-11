@@ -50,12 +50,14 @@ class HaditsController extends Controller
         } else {
             // Logika untuk browsing
             $totalItems = $this->quran->getHadits($book);
+            \Log::info("Hadits browsing: Book={$book}, TotalItems={$totalItems}");
             $data['title'] = "Hadits Riwayat {$data['perowi']} ~ My QUR`AN";
             $data['data'] = $this->quran->getHadits($book, $page - 1);
             $baseUrl = "/hadits/{$book}";
         }
 
         $totalPages = ceil($totalItems / $perPage);
+        \Log::info("Hadits pagination: TotalPages={$totalPages}, CurrentPage={$page}");
 
         if ($page > $totalPages && $totalPages > 0) {
             if ($query) {
@@ -65,7 +67,7 @@ class HaditsController extends Controller
             return redirect()->to("{$baseUrl}/{$totalPages}");
         }
 
-        $data['pagination'] = $this->generatePagination($totalItems, $page, $perPage, $baseUrl, ! is_null($query));
+        $data['pagination'] = $this->generatePagination($totalItems, $page, $perPage, $baseUrl, !empty($query));
 
         return view('amp.hadits', $data);
     }
