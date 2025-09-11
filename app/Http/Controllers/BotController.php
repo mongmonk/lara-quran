@@ -201,9 +201,9 @@ class BotController extends Controller
     {
         $text = "Silakan kelola jadwal sholat masjid Anda melalui tombol di bawah ini.";
         
-        // Generate a signed URL that is valid for 1 minute
+        // Generate a signed URL to the new entry route
         $signedUrl = \Illuminate\Support\Facades\URL::temporarySignedRoute(
-            'bot.jadwalsholat.index', now()->addMinute(), ['chat_id' => $chat_id]
+            'bot.jadwalsholat.entry', now()->addMinutes(5), ['chat_id' => $chat_id]
         );
 
         $buttons = [
@@ -312,7 +312,7 @@ class BotController extends Controller
                     [
                         'text' => '🕌🕋 PENGATURAN JADWAL SHOLAT 🗝🗝',
                         'web_app' => ['url' => \Illuminate\Support\Facades\URL::temporarySignedRoute(
-                            'bot.jadwalsholat.index', now()->addMinute(), ['chat_id' => $chat_id]
+                            'bot.jadwalsholat.entry', now()->addMinutes(5), ['chat_id' => $chat_id]
                         )],
                     ],
                 ],
@@ -328,9 +328,10 @@ class BotController extends Controller
         return $response->json();
     }
 
-    public function jadwalSholatLoader()
+    public function jadwalSholatEntry($chat_id)
     {
-        $targetUrl = route('bot.jadwalsholat.index');
-        return view('bot.loader', ['targetUrl' => $targetUrl]);
+        // The 'telegram.signed' middleware has already validated and logged in the user.
+        // Now, we just redirect them to the main settings page.
+        return redirect()->route('bot.jadwalsholat.index');
     }
 }

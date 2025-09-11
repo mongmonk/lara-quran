@@ -59,7 +59,13 @@ Route::post('/bot/webhook', [BotController::class, 'handleWebhook']);
 Route::get('/bot/set-webhook', [BotController::class, 'setWebhook']);
 
 // bot webview
-Route::prefix('bot/jadwalsholat/{chat_id}')->middleware('telegram.signed')->group(function () {
+// This is the secure entry point for the webview. It validates the user and logs them in.
+Route::get('/bot/jadwalsholat/auth/{chat_id}', [\App\Http\Controllers\BotController::class, 'jadwalSholatEntry'])
+    ->middleware('web', 'telegram.signed')
+    ->name('bot.jadwalsholat.entry');
+
+// Once authenticated via the entry route, the user has a session and can access these routes.
+Route::prefix('bot/jadwalsholat')->middleware('web', 'auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'index'])->name('bot.jadwalsholat.index');
     Route::get('/create', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'create'])->name('bot.jadwalsholat.create');
     Route::post('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'store'])->name('bot.jadwalsholat.store');

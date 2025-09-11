@@ -19,7 +19,7 @@
         @endif
 
         <div class="d-flex justify-content-end mb-3">
-            <a href="{{ route('bot.jadwalsholat.create', ['chat_id' => $chat_id]) }}" class="btn btn-primary">Buat Jadwal Baru</a>
+            <a href="{{ route('bot.jadwalsholat.create') }}" class="btn btn-primary">Buat Jadwal Baru</a>
         </div>
 
         <h3 class="my-3">Daftar Masjid Anda</h3>
@@ -28,7 +28,7 @@
                 <li class='list-group-item d-flex justify-content-between align-items-center'>
                     {{ $masjid->nama_masjid }}
                     <span>
-                        <a href="{{ route('bot.jadwalsholat.edit', ['chat_id' => $chat_id, 'masjid' => $masjid->url]) }}" class="btn btn-sm btn-info">[edit]</a>
+                        <a href="{{ route('bot.jadwalsholat.edit', $masjid->url) }}" class="btn btn-sm btn-info">[edit]</a>
                         <a href='/jadwal/{{ $masjid->url }}' target='_blank' class="btn btn-sm btn-success">[lihat]</a>
                     </span>
                 </li>
