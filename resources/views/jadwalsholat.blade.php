@@ -82,7 +82,7 @@
                 </table>
             </div>
             <div class="footer d-print-none">
-                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="mailto:akunpribadiku@gmail.com">akunpribadiku@gmail.com</a></div>
+                <div class="text-center py-3">&copy;{{ date('Y') }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>. Developed by <a href="mailto:akunpribadiku@gmail.com">Cemonggaul</a></div>
             </div>          
         </div>
     </div>

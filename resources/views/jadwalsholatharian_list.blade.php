@@ -1,5 +1,5 @@
 <!doctype html>
-<html ⚡="" lang="id-ID">
+<html ⚡ lang="id-ID">
   <head>
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -13,7 +13,7 @@
     <meta property="og:description" content="{{ config('app.description') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:site_name" content="{{ config('app.name') }}" />
-    <meta property="og:image" content="{{ asset('inc/alquran.png') }}" />
+    <meta property="og:image" content="{{ asset('inc/images/alquran.png') }}" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="500" />
     <meta property="og:image:type" content="image/png" />
@@ -41,17 +41,21 @@
     @include('amp.nav')
     <main id="content" role="main" class="pt4">
       <article class="recipe-article center border-bottom pt4">
-        <header>          
+        <header>
           <h1 class="h2 px3">{{ $title }}</h1>
-          <span class="block px3 mb2">سْمِ ٱللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
+          <span class="ampstart-subtitle block px3 mb2"><em>Jadikanlah Al-Quran Karim dan Sunnah Nabi sebagai tuntunan hidupmu agar kamu tidak sesat</em></span>
         </header>
       </article>
-      <ul class="bold column-3 center">
-        @foreach($data as $ruku)
-            <li class="mb2 px3">
-                <a href="{{ url("ruku/{$ruku['ruku']}") }}">Ruku {{ $ruku['ruku'] }}</a>
-            </li>
-        @endforeach
+      <ul class="bold list-reset">
+        @forelse($masjids as $masjid)
+        <li class="mb1 mx2 px3 btn center">
+          <a href="{{ url("/jadwal/{$masjid->id}") }}" target="_blank">{{ $masjid->nama_masjid }}</a>
+        </li>
+        @empty
+        <li class="mb1 mx2 px3 btn center">
+            Tidak ada data masjid.
+        </li>
+        @endforelse
       </ul>
     </main>
     <footer class="ampstart-footer flex flex-column items-center px3">

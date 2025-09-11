@@ -11,8 +11,13 @@ class TelegramWebviewAuth
 {
     public function handle(Request $request, Closure $next)
     {
-        if ($request->hasHeader('X-Telegram-Init-Data')) {
+        $initData = $request->query('_auth');
+
+        if (!$initData && $request->hasHeader('X-Telegram-Init-Data')) {
             $initData = $request->header('X-Telegram-Init-Data');
+        }
+
+        if ($initData) {
             $data = $this->validateInitData($initData);
 
             if ($data) {

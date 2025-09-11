@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JadwalSholatHarian;
 use App\Models\QuranModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -174,6 +175,34 @@ class QuranController extends Controller
         return view('jadwalsholat', $data);
     }
 
+    public function jadwalsholatharian()
+    {
+        $data['masjids'] = JadwalSholatHarian::all();
+        $data['title'] = 'Daftar Jadwal Sholat Masjid ~ My QUR`AN';
+
+        return view('jadwalsholatharian_list', $data);
+    }
+
+    public function showJadwal($masjidId)
+    {
+        $masjid = JadwalSholatHarian::findOrFail($masjidId);
+        $jadwal = $this->quran->getJadwal($masjid->id_kota, date('d'));
+
+        $data = [
+            'title' => 'Jadwal Sholat ' . $masjid->nama_masjid,
+            'id' => $masjid->id,
+            'nama' => $masjid->nama_masjid,
+            'alamat' => $masjid->alamat_masjid,
+            'img' => $masjid->img,
+            'pesan1' => $masjid->pesan1,
+            'pesan2' => $masjid->pesan2,
+            'adzan' => $masjid->adzan,
+            'jadwal' => $jadwal,
+        ];
+
+        return view('jadwalsholatharian_view', $data);
+    }
+
     public function tahlil()
     {
         $data['title'] = 'Do`a Tahlil ~ My QUR`AN';
@@ -239,9 +268,18 @@ class QuranController extends Controller
 
     public function masjid($masjidid = false)
     {
-        $id = $masjidid ? $masjidid : 1603;
+        if (!$masjidid) {
+            $id_kota = 1603;
+        } else {
+            $masjid = JadwalSholatHarian::find($masjidid);
+            if (!$masjid) {
+                return response()->json(['error' => 'Masjid not found'], 404);
+            }
+            $id_kota = $masjid->id_kota;
+        }
+
         $hari = date('d');
-        $jadwal = $this->quran->getJadwal($id, $hari);
+        $jadwal = $this->quran->getJadwal($id_kota, $hari);
 
         return response()->json($jadwal);
     }

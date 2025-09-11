@@ -16,7 +16,7 @@ Route::post('/logout', [WelcomeController::class, 'logout'])->name('logout');
 Route::get('/storage/{file}', [WelcomeController::class, 'image'])->where('file', '.*');
 
 // Quran controller routes
-Route::get('/jadwal/{masjid}', [QuranController::class, 'jadwalsholatharian']);
+Route::get('/jadwal/{masjid}', [QuranController::class, 'showJadwal']);
 Route::get('/juz/{juz}', [QuranController::class, 'juz']);
 Route::get('/surah/{surah}', [QuranController::class, 'surah']);
 Route::get('/ruku/{ruku}', [QuranController::class, 'ruku']);
@@ -32,6 +32,7 @@ Route::get('/quran/daftarayat', [QuranController::class, 'daftarayat']);
 Route::get('/quran/daftarsajdah', [QuranController::class, 'daftarsajdah']);
 Route::get('/quran/tafsir/{surah}', [QuranController::class, 'tafsir']);
 Route::get('/quran/jadwalsholat', [QuranController::class, 'jadwalsholat']);
+Route::get('/quran/jadwalsholatharian', [QuranController::class, 'jadwalsholatharian']);
 Route::get('/quran/tahlil', [QuranController::class, 'tahlil']);
 Route::get('/quran/about', [QuranController::class, 'about']);
 Route::get('/quran/privacy', [QuranController::class, 'privacy']);
@@ -58,6 +59,7 @@ Route::post('/bot/webhook', [BotController::class, 'handleWebhook']);
 Route::get('/bot/set-webhook', [BotController::class, 'setWebhook']);
 
 // bot webview
+Route::get('/bot/jadwalsholat/loader', [BotController::class, 'jadwalSholatLoader'])->name('bot.jadwalsholat.loader');
 Route::prefix('bot/jadwalsholat')->middleware('telegram.webview.auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'index'])->name('bot.jadwalsholat.index');
     Route::get('/create', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'create'])->name('bot.jadwalsholat.create');

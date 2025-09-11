@@ -205,7 +205,7 @@ class BotController extends Controller
                 [
                     [
                         'text' => 'Buka Pengaturan Jadwal Sholat',
-                        'web_app' => ['url' => route('bot.jadwalsholat.index')],
+                        'web_app' => ['url' => route('bot.jadwalsholat.loader')],
                     ],
                 ],
             ],
@@ -305,7 +305,7 @@ class BotController extends Controller
                 [
                     [
                         'text' => '🕌🕋 PENGATURAN JADWAL SHOLAT 🗝🗝',
-                        'web_app' => ['url' => route('bot.jadwalsholat.index')],
+                        'web_app' => ['url' => route('bot.jadwalsholat.loader')],
                     ],
                 ],
             ],
@@ -318,5 +318,11 @@ class BotController extends Controller
         $response = $this->telegram->setWebhook($webhookUrl);
 
         return $response->json();
+    }
+
+    public function jadwalSholatLoader()
+    {
+        $targetUrl = route('bot.jadwalsholat.index');
+        return view('bot.loader', ['targetUrl' => $targetUrl]);
     }
 }
