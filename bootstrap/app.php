@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'bot/webhook',
         ]);
-    
+
         $middleware->alias([
             'telegram.signed' => \App\Http\Middleware\ValidateTelegramSignedUrl::class,
         ]);

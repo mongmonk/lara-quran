@@ -2,17 +2,17 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use App\Models\User;
 
 class ValidateTelegramSignedUrl
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!$this->isValidTelegramRequest($request)) {
+        if (! $this->isValidTelegramRequest($request)) {
             abort(403, 'Invalid Telegram signature.');
         }
 
@@ -23,13 +23,13 @@ class ValidateTelegramSignedUrl
     {
         $initData = $request->query('_auth');
 
-        if (!$initData) {
+        if (! $initData) {
             return false;
         }
 
         parse_str($initData, $data);
 
-        if (!isset($data['hash'])) {
+        if (! isset($data['hash'])) {
             return false;
         }
 
@@ -37,11 +37,12 @@ class ValidateTelegramSignedUrl
         unset($data['hash']);
         ksort($data);
 
-        $dataCheckString = implode("\n", array_map(fn($key, $value) => "$key=$value", array_keys($data), $data));
+        $dataCheckString = implode("\n", array_map(fn ($key, $value) => "$key=$value", array_keys($data), $data));
 
         $botToken = env('TELEGRAM_BOT_TOKEN');
-        if (!$botToken) {
+        if (! $botToken) {
             Log::error('TELEGRAM_BOT_TOKEN is not set in .env file.');
+
             return false;
         }
 
@@ -52,20 +53,21 @@ class ValidateTelegramSignedUrl
             $userData = json_decode($data['user'], true);
             $chatId = $userData['id'] ?? null;
 
-            if (!$chatId) {
+            if (! $chatId) {
                 return false;
             }
 
             $user = User::firstOrCreate(
                 ['chat_id' => $chatId],
                 [
-                    'name' => trim(($userData['first_name'] ?? '') . ' ' . ($userData['last_name'] ?? '')),
+                    'name' => trim(($userData['first_name'] ?? '').' '.($userData['last_name'] ?? '')),
                     'username' => $userData['username'] ?? null,
                     'password' => bcrypt(str()->random(16)),
                 ]
             );
 
             Auth::login($user);
+
             return true;
         }
 

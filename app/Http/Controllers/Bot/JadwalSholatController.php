@@ -15,7 +15,7 @@ class JadwalSholatController extends Controller
 
     public function __construct()
     {
-        $this->quran = new QuranModel();
+        $this->quran = new QuranModel;
     }
 
     /**
@@ -25,6 +25,7 @@ class JadwalSholatController extends Controller
     {
         $data['title'] = 'Pengaturan Jadwal Sholat Masjid';
         $data['masjids'] = JadwalSholatHarian::where('chat_id', Auth::id())->get();
+
         return view('bot.jadwalsholat.index', $data);
     }
 
@@ -35,6 +36,7 @@ class JadwalSholatController extends Controller
     {
         $data['title'] = 'Buat Jadwal Sholat Masjid Baru';
         $data['kota'] = $this->quran->getKota();
+
         return view('bot.jadwalsholat.edit', $data);
     }
 
@@ -83,7 +85,7 @@ class JadwalSholatController extends Controller
     {
         $jadwal = JadwalSholatHarian::where('url', $masjid)->first();
 
-        if (!$jadwal || (int) $jadwal->chat_id !== (int) Auth::id()) {
+        if (! $jadwal || (int) $jadwal->chat_id !== (int) Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -94,7 +96,7 @@ class JadwalSholatController extends Controller
         $selectedKota = '';
         foreach ($data['kota'] as $k) {
             if ($k['id'] == $jadwal->id_kota) {
-                $selectedKota = $k['id'] . '. ' . $k['lokasi'];
+                $selectedKota = $k['id'].'. '.$k['lokasi'];
                 break;
             }
         }
@@ -110,7 +112,7 @@ class JadwalSholatController extends Controller
     {
         $jadwal = JadwalSholatHarian::where('url', $masjid)->first();
 
-        if (!$jadwal || (int) $jadwal->chat_id !== (int) Auth::id()) {
+        if (! $jadwal || (int) $jadwal->chat_id !== (int) Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -138,7 +140,6 @@ class JadwalSholatController extends Controller
         $data['id_kota'] = (int) $kotaId;
         $data['url'] = strtolower(str_replace(' ', '-', $request->nama));
         $data['nama_masjid'] = $request->nama;
-
 
         $jadwal->update($data);
 

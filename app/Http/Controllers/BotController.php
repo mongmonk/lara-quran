@@ -196,8 +196,8 @@ class BotController extends Controller
 
     private function handleJadwalSholatCommand($chat_id)
     {
-        $text = "Silakan kelola jadwal sholat masjid Anda melalui tombol di bawah ini.";
-        
+        $text = 'Silakan kelola jadwal sholat masjid Anda melalui tombol di bawah ini.';
+
         // Generate a signed URL to the new entry route
         $url = route('bot.jadwalsholat.entry');
 

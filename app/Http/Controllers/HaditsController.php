@@ -32,7 +32,7 @@ class HaditsController extends Controller
         ];
 
         // Validasi untuk mencegah Path Traversal dengan memastikan $book ada di dalam whitelist
-        if (!isset($perowiMap[$book])) {
+        if (! isset($perowiMap[$book])) {
             abort(404, 'Kitab hadits tidak ditemukan.');
         }
         $data['perowi'] = $perowiMap[$book];
@@ -65,7 +65,7 @@ class HaditsController extends Controller
             return redirect()->to("{$baseUrl}/{$totalPages}");
         }
 
-        $data['pagination'] = $this->generatePagination($totalItems, $page, $perPage, $baseUrl, !empty($query));
+        $data['pagination'] = $this->generatePagination($totalItems, $page, $perPage, $baseUrl, ! empty($query));
 
         return view('amp.hadits', $data);
     }

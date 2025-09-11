@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\JadwalSholatHarian;
 use App\Models\QuranModel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class QuranController extends Controller
 {
@@ -189,7 +186,7 @@ class QuranController extends Controller
         $jadwal = $this->quran->getJadwal($masjid->id_kota, date('d'));
 
         $data = [
-            'title' => 'Jadwal Sholat ' . $masjid->nama_masjid,
+            'title' => 'Jadwal Sholat '.$masjid->nama_masjid,
             'id' => $masjid->id,
             'nama' => $masjid->nama_masjid,
             'alamat' => $masjid->alamat_masjid,
@@ -257,7 +254,6 @@ class QuranController extends Controller
         return view('amp.contact', $data);
     }
 
-
     public function doa()
     {
         $data['data'] = $this->quran->getDoa();
@@ -268,11 +264,11 @@ class QuranController extends Controller
 
     public function masjid($masjidid = false)
     {
-        if (!$masjidid) {
+        if (! $masjidid) {
             $id_kota = 1603;
         } else {
             $masjid = JadwalSholatHarian::find($masjidid);
-            if (!$masjid) {
+            if (! $masjid) {
                 return response()->json(['error' => 'Masjid not found'], 404);
             }
             $id_kota = $masjid->id_kota;

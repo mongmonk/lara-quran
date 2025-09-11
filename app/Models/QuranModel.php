@@ -684,6 +684,7 @@ class QuranModel extends Model
 
         return null;
     }
+
     /**
      * Send a message to Telegram.
      *
