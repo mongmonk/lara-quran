@@ -47,6 +47,9 @@
         </header>
       </article>
       <ul class="bold list-reset">
+        <li class="mb1 mx2 px3 btn btn-special center">
+          <a href="https://t.me/{{ env('TELEGRAM_BOT_NAME') }}" target="_blank">Buat Jadwal Untuk Masjidmu</a>
+        </li>
         @forelse($masjids as $masjid)
         <li class="mb1 mx2 px3 btn center">
           <a href="{{ url("/jadwal/{$masjid->id}") }}" target="_blank">{{ $masjid->nama_masjid }}</a>

@@ -29,7 +29,7 @@
                     {{ $masjid->nama_masjid }}
                     <span>
                         <a href="{{ route('bot.jadwalsholat.edit', $masjid->url) }}" class="btn btn-sm btn-info">[edit]</a>
-                        <a href='/jadwal/{{ $masjid->url }}' target='_blank' class="btn btn-sm btn-success">[lihat]</a>
+                        <a href='/jadwal/{{ $masjid->id }}' target='_blank' class="btn btn-sm btn-success">[lihat]</a>
                     </span>
                 </li>
             @empty

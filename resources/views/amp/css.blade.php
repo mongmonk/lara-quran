@@ -1899,6 +1899,9 @@
     color: #ffffff;
     font-size: .9em;
   }
+  .btn.btn-special, a.btn.btn-special {
+    background-color: #28a745; /* Green */
+  }
   .bottom {
     background-color: #fff;
     position: fixed;
