@@ -16,15 +16,20 @@ class ValidateTelegramSignedUrl
         }
 
         $chatId = $request->route('chat_id');
-        $user = User::where('chat_id', $chatId)->first();
+        
+        // Find the user or create a new one if they don't exist.
+        $user = User::firstOrCreate(
+            ['chat_id' => $chatId],
+            [
+                // We don't have name/username here, so we'll use placeholders.
+                // The webhook handler can update these details later.
+                'name' => 'Telegram User ' . $chatId,
+                'password' => bcrypt(str()->random(16)),
+            ]
+        );
 
-        if ($user) {
-            Auth::login($user);
-            return $next($request);
-        }
-
-        // Optional: Create user if not exists, similar to old logic
-        // For now, we'll just deny access if user is not found from a webhook interaction.
-        abort(404, 'User not found.');
+        Auth::login($user);
+        
+        return $next($request);
     }
 }
