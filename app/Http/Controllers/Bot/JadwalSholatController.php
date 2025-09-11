@@ -21,7 +21,7 @@ class JadwalSholatController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($chat_id)
     {
         $data['title'] = 'Pengaturan Jadwal Sholat Masjid';
         $data['masjids'] = JadwalSholatHarian::where('chat_id', Auth::id())->get();
