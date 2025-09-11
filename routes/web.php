@@ -60,7 +60,7 @@ Route::get('/bot/set-webhook', [BotController::class, 'setWebhook']);
 
 // bot webview
 // This is the secure entry point for the webview. It validates the user and logs them in.
-Route::get('/bot/jadwalsholat/auth/{chat_id}', [\App\Http\Controllers\BotController::class, 'jadwalSholatEntry'])
+Route::get('/bot/jadwalsholat/auth', [\App\Http\Controllers\BotController::class, 'jadwalSholatEntry'])
     ->middleware('web', 'telegram.signed')
     ->name('bot.jadwalsholat.entry');
 
