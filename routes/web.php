@@ -58,7 +58,7 @@ Route::post('/bot/webhook', [BotController::class, 'handleWebhook']);
 Route::get('/bot/set-webhook', [BotController::class, 'setWebhook']);
 
 // bot webview
-Route::prefix('bot/jadwalsholat')->middleware('auth')->group(function () {
+Route::prefix('bot/jadwalsholat')->middleware('telegram.webview.auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'index'])->name('bot.jadwalsholat.index');
     Route::get('/create', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'create'])->name('bot.jadwalsholat.create');
     Route::post('/', [\App\Http\Controllers\Bot\JadwalSholatController::class, 'store'])->name('bot.jadwalsholat.store');

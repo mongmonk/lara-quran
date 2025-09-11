@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'bot/webhook',
         ]);
+    
+        $middleware->alias([
+            'telegram.webview.auth' => \App\Http\Middleware\TelegramWebviewAuth::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
