@@ -326,8 +326,15 @@ class BotController extends Controller
 
     public function jadwalSholatEntry()
     {
-        // The 'telegram.signed' middleware has already validated and logged in the user.
-        // Now, we just redirect them to the main settings page.
+        // This route now simply returns the view that will handle the redirect.
+        return view('bot.auth_redirect');
+    }
+
+    public function jadwalSholatValidate()
+    {
+        // The 'telegram.signed' middleware has already run and validated the user.
+        // If we reach here, the user is authenticated.
+        // Now, we can safely redirect them to the actual application page.
         return redirect()->route('bot.jadwalsholat.index');
     }
 }
