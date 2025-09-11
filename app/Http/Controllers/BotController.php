@@ -311,4 +311,12 @@ class BotController extends Controller
             ],
         ];
     }
+
+    public function setWebhook()
+    {
+        $webhookUrl = url('/bot/webhook');
+        $response = $this->telegram->setWebhook($webhookUrl);
+
+        return $response->json();
+    }
 }

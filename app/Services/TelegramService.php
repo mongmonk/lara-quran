@@ -35,4 +35,8 @@ class TelegramService
     {
         return $this->sendMessage($chatId, $text, ['remove_keyboard' => true]);
     }
+    public function setWebhook($url)
+    {
+        return Http::post("{$this->apiUrl}/setWebhook", ['url' => $url]);
+    }
 }

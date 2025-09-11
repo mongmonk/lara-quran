@@ -55,6 +55,7 @@ Route::get('/bot/tafsir', [BotController::class, 'tafsir']);
 Route::get('/bot/persurah', [BotController::class, 'persurah']);
 Route::get('/bot/perjuz', [BotController::class, 'perjuz']);
 Route::post('/bot/webhook', [BotController::class, 'handleWebhook']);
+Route::get('/bot/set-webhook', [BotController::class, 'setWebhook']);
 
 // bot webview
 Route::prefix('bot/jadwalsholat')->middleware('auth')->group(function () {
