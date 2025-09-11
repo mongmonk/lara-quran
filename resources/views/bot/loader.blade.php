@@ -23,28 +23,32 @@
 </head>
 <body>
     <div id="status">
-        <p>Please wait, initializing...</p>
+        <p>Please wait, initializing Telegram WebApp...</p>
     </div>
     <script>
         try {
             const tg = window.Telegram.WebApp;
             tg.ready();
 
-            // Function to attempt redirect
-            function attemptRedirect() {
+            let attempts = 0;
+            const maxAttempts = 20; // Try for 2 seconds (20 * 100ms)
+            const targetUrl = '{{ $targetUrl }}';
+
+            const authenticator = setInterval(() => {
+                attempts++;
+                document.getElementById('status').innerHTML = `<p>Authenticating... (Attempt ${attempts}/${maxAttempts})</p>`;
+
                 if (tg.initData) {
+                    clearInterval(authenticator);
                     document.getElementById('status').innerHTML = '<p>Authentication data found. Redirecting...</p>';
-                    const url = new URL('{{ $targetUrl }}');
+                    const url = new URL(targetUrl);
                     url.searchParams.set('_auth', tg.initData);
                     window.location.replace(url.toString());
-                } else {
-                     // If it's still not available after a short delay, show an error.
-                    document.getElementById('status').innerHTML = '<p>Error: Could not retrieve Telegram authentication data (initData is empty).</p>';
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(authenticator);
+                    document.getElementById('status').innerHTML = '<p>Error: Could not retrieve Telegram authentication data after several attempts. Please try closing and reopening this window.</p>';
                 }
-            }
-
-            // Wait a brief moment to ensure the initData is populated.
-            setTimeout(attemptRedirect, 150);
+            }, 100);
 
         } catch (e) {
             document.getElementById('status').innerHTML = '<p>Fatal Error: Telegram WebApp script failed. ' + e.message + '</p>';
