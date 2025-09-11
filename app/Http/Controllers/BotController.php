@@ -200,12 +200,18 @@ class BotController extends Controller
     private function handleJadwalSholatCommand($chat_id)
     {
         $text = "Silakan kelola jadwal sholat masjid Anda melalui tombol di bawah ini.";
+        
+        // Generate a signed URL that is valid for 1 minute
+        $signedUrl = \Illuminate\Support\Facades\URL::temporarySignedRoute(
+            'bot.jadwalsholat.index', now()->addMinute(), ['chat_id' => $chat_id]
+        );
+
         $buttons = [
             'inline_keyboard' => [
                 [
                     [
                         'text' => 'Buka Pengaturan Jadwal Sholat',
-                        'web_app' => ['url' => route('bot.jadwalsholat.loader')],
+                        'web_app' => ['url' => $signedUrl],
                     ],
                 ],
             ],
@@ -305,7 +311,9 @@ class BotController extends Controller
                 [
                     [
                         'text' => '🕌🕋 PENGATURAN JADWAL SHOLAT 🗝🗝',
-                        'web_app' => ['url' => route('bot.jadwalsholat.loader')],
+                        'web_app' => ['url' => \Illuminate\Support\Facades\URL::temporarySignedRoute(
+                            'bot.jadwalsholat.index', now()->addMinute(), ['chat_id' => $chat_id]
+                        )],
                     ],
                 ],
             ],

@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     
         $middleware->alias([
-            'telegram.webview.auth' => \App\Http\Middleware\TelegramWebviewAuth::class,
+            'telegram.signed' => \App\Http\Middleware\ValidateTelegramSignedUrl::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
