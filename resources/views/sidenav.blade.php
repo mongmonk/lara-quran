@@ -27,7 +27,7 @@
                     <a href="/hadits/muslim">HR.MUSLIM</a>
                 </li>
                 <li>
-                    <a href="/hadits/abud-aud">HR.ABU DAUD</a>
+                    <a href="/hadits/abu-daud">HR.ABU DAUD</a>
                 </li>
                 <li>
                     <a href="/hadits/ahmad">HR.AHMAD</a>
