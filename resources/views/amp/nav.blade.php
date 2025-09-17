@@ -81,7 +81,7 @@
         <a class="ampstart-nav-link" href="/hadits/muslim">HADITS RIWAYAT MUSLIM</a>
       </li>
       <li class="ampstart-nav-item">
-        <a class="ampstart-nav-link" href="/hadits/abudaud">HADITS RIWAYAT ABU DAUD</a>
+        <a class="ampstart-nav-link" href="/hadits/abu-daud">HADITS RIWAYAT ABU DAUD</a>
       </li>
       <li class="ampstart-nav-item">
         <a class="ampstart-nav-link" href="/hadits/ahmad">HADITS RIWAYAT AHMAD</a>
@@ -90,7 +90,7 @@
         <a class="ampstart-nav-link" href="/hadits/darimi">HADITS RIWAYAT DARIMI</a>
       </li>
       <li class="ampstart-nav-item">
-        <a class="ampstart-nav-link" href="/hadits/ibnumajah">HADITS RIWAYAT IBNU MAJAH</a>
+        <a class="ampstart-nav-link" href="/hadits/ibnu-majah">HADITS RIWAYAT IBNU MAJAH</a>
       </li>
       <li class="ampstart-nav-item">
         <a class="ampstart-nav-link" href="/hadits/malik">HADITS RIWAYAT MALIK</a>
