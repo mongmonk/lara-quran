@@ -66,7 +66,9 @@
           <div class="col-6 px1 py3">{!! $next !!}</div>
         </div>
         <div class="center my3">
-          <amp-addthis width="220" height="51"  data-pub-id="ra-58ee198592911521" data-widget-id="eebc" data-widget-type="inline"></amp-addthis>
+          @if(config('app.addthis_pub_id'))
+          <amp-addthis width="220" height="51"  data-pub-id="{{ config('app.addthis_pub_id') }}" data-widget-id="eebc" data-widget-type="inline"></amp-addthis>
+          @endif
         </div>
       </div>
     </main>

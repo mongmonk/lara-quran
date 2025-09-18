@@ -157,27 +157,11 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="{{ asset('inc/js/bootstrap-multiselect.js') }}"></script>
-    <script src="{{ asset('inc/js/jquery.mediaplayer.js') }}"></script>
-    <script src="{{ asset('inc/js/jquery.surah.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');
-            });
-        });
-        $(function() {
-            $('#editionSelector').multiselect({ enableFiltering: true, enableCaseInsensitiveFiltering: true, maxHeight: 400, dropUp: true});
-            $.alQuranSurah.editions('#editionSelector', '{{ end($data)['surahNum'] }}');
-            $.alQuranSurah.surahs('#surahSelector');
-            $.alQuranMediaPlayer.init($("#surahPlayer")[0], 'surah', {{ $data[0]['numList'] }}, {{ end($data)['numList'] }}, {{ $data[0]['surahNum'] }}, 0, '{{ request()->get('audio') == true ? request()->get('audio') : 'ar.alafasy' }}');
-            $.alQuranMediaPlayer.defaultPlayer();
-            $.alQuranMediaPlayer.zoomIntoThisAyah();
-        });
-        $(function () {
-            $('#surahSelector').change( function() {
-                location.href = $(this).val();
             });
         });
     </script>
